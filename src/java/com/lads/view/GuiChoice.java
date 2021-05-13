@@ -1,8 +1,11 @@
+package com.lads.view;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import com.lads.controller.ActionEventChoice;
 
 public class GuiChoice extends JFrame {
 	protected JButton quit;

@@ -8,6 +8,7 @@ public class Teacher extends Staff{
     private ArrayList<String> trainings_taken;
 
     //initialize with basic information.
+    //do we need role since its always going to be a teacher?
     public Teacher(String name,Role role,Date dob){
         this.name = name;
         this.role = role;
@@ -17,9 +18,9 @@ public class Teacher extends Staff{
     /**
      *
      * Add training undertaken by teacher
-     *
+     * addTrainingUndertaken changed to addTrainingDue
      */
-    public void addTrainingUndertaken(String ...trainings){
+    public void addTrainingDue(String ...trainings){
         for (String training:trainings){
             this.trainings_taken.add(training);
         }
@@ -35,5 +36,4 @@ public class Teacher extends Staff{
             this.trainings_taken.add(training);
         }
     }
-
 }

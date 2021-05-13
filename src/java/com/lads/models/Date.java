@@ -10,4 +10,8 @@ public class Date {
         this.month = month;
         this.day = day;
     }
+    
+    //getter methods
+    
+    //clone method
 }

@@ -3,8 +3,9 @@ package com.lads.models;
 import java.io.FileReader;
 import java.io.IOException;
 
-//TODO 
 public class FileIO<T> implements DataHandling<T>{
+	
+	//path to come from admin & director GUI (textbox)
     private String path;
 
 
@@ -18,6 +19,8 @@ public class FileIO<T> implements DataHandling<T>{
         FileReader fr = null;
         try {
             fr = new FileReader(this.path);
+            // Implement file reading 
+            
         }
         catch (IOException e){
             e.printStackTrace();

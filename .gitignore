@@ -39,3 +39,5 @@ gen
 /.idea
 /README.md
 .DS_Store
+/bin/
+/Daire_test
