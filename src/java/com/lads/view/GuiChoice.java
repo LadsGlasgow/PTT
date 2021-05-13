@@ -23,10 +23,10 @@ public class GuiChoice extends JFrame {
 		director = new JButton("Director");
 		JLabel choiceLabel = new JLabel("Please select your role:");
 		
-		ActionEventChoice handler = new ActionEventChoice(this);
+		/*ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
 		director.addActionListener(handler);
-		admin.addActionListener(handler);
+		admin.addActionListener(handler);*/
 		
 		this.add(choiceLabel);
 		this.add(admin);

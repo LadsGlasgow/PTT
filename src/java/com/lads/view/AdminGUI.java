@@ -18,6 +18,7 @@ public class AdminGUI extends JFrame {
 	protected JButton clearBut;
 	protected JTextArea teacherDisplay;
 	protected JTextField search;
+	protected JButton run;
 	//
 	public AdminGUI() {
 		this.setSize(700, 500);
@@ -40,6 +41,7 @@ public class AdminGUI extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		quit = new JButton("Quit");
 		clearBut = new JButton("Clear");
+		run = new JButton("Run");
 		
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teachning requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
@@ -51,10 +53,11 @@ public class AdminGUI extends JFrame {
 		JTextField search = new JTextField("[Enter skill to search...]");
 		JButton clear = new JButton("Search");
 		teacherDisplay = new JTextArea(10, 10);
+		JTextField fileDirectory = new JTextField("[Please Enter the file's directory here]");
 		
-		ActionEventAdmin handler = new ActionEventAdmin(this);
+		/*ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
-		clearBut.addActionListener(handler);
+		clearBut.addActionListener(handler);*/
 		
 		searchBar.add(search);
 		searchBar.add(clear);
@@ -65,11 +68,14 @@ public class AdminGUI extends JFrame {
 		teacherPanel.add(clearBut, BorderLayout.SOUTH);
 		classPanel.add(classRequirements, BorderLayout.CENTER);
 		classPanel.add(subjectInst, BorderLayout.NORTH);
+		classPanel.add(fileDirectory, BorderLayout.SOUTH);
 		mainPanel.add(classPanel);
 		mainPanel.add(teacherPanel);
 		//northPanel.add(instructions);
 		//buttonPanel.add(clearBut);
+		buttonPanel.add(run);
 		buttonPanel.add(quit);
+		
 		
 	
 		

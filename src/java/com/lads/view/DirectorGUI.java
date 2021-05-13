@@ -1,5 +1,6 @@
 package com.lads.view;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,7 +20,7 @@ public class DirectorGUI extends JFrame {
 	protected JButton submit;
 	protected JButton clear;
 	protected JTextArea enterText;
-	
+	protected JButton importFile;
 	
 	public DirectorGUI() {
 		this.setSize(700, 500);
@@ -35,7 +36,7 @@ public class DirectorGUI extends JFrame {
 		JPanel subPanel2 = new JPanel();
 		
 		mainPanel.setLayout(new BorderLayout());
-		subPanel2.setLayout(new GridLayout(2, 2));
+		subPanel.setLayout(new FlowLayout());
 		
 		
 		
@@ -43,6 +44,7 @@ public class DirectorGUI extends JFrame {
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
 		enterText = new JTextArea(25, 30);
+		importFile = new JButton("Import");
 		
 		
 		enterText.setLineWrap(true);
@@ -50,22 +52,25 @@ public class DirectorGUI extends JFrame {
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
+		JTextField fileDirectory = new JTextField("[Please Enter the file's directory here]");
 		instruction.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
 			
 		
-		ActionEventDirector handler = new ActionEventDirector(this);
+		/*ActionEventDirector handler = new ActionEventDirector(this);
 		quit.addActionListener(handler);
 		clear.addActionListener(handler);
-		submit.addActionListener(handler);
+		submit.addActionListener(handler);*/
 		
-		subPanel.add(enterText);
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(quit);
 		northPanel.add(instruction);
-		mainPanel.add(subPanel);
+		subPanel.add(fileDirectory);
+		subPanel.add(importFile);
+		mainPanel.add(enterText, BorderLayout.CENTER);
+		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
 		
 		this.add(mainPanel, BorderLayout.CENTER);
