@@ -12,6 +12,18 @@ public class Date {
     }
     
     //getter methods
+	public int getDay() {
+		return day;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public int getYear() {
+		return year;
+	}
     
     //clone method
+    public Date clone(){
+		return new Date(day, month, year);
+	}
 }

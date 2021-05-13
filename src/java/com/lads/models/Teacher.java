@@ -1,5 +1,6 @@
 package com.lads.models;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class Teacher extends Staff{
@@ -8,16 +9,15 @@ public class Teacher extends Staff{
     private ArrayList<String> trainings_taken;
 
     //initialize with basic information.
-    //do we need role since its always going to be a teacher?
-    public Teacher(String name,Role role,Date dob){
+    //do we need role since its always going to be a teacher? We can all discuss in meeting, nice programming technique though
+    //also do we need getter for name and dob?
+    public Teacher(String name, Role role, Date dob){
         this.name = name;
         this.role = role;
         this.dob = dob;
     }
 
     /**
-     *
-     * Add training undertaken by teacher
      * addTrainingUndertaken changed to addTrainingDue
      */
     public void addTrainingDue(String ...trainings){
@@ -36,4 +36,14 @@ public class Teacher extends Staff{
             this.trainings_taken.add(training);
         }
     }
+    
+    public String getName() {
+		return this.name;
+	}
+    
+    public void print(PrintStream ps) {
+		ps.print(String.format("Teacher is %s with dob: %02d/%02d/%04d", this.getName(), this.getDob().getDay(),this.getDob().getMonth(),
+				this.getDob().getYear()));
+	}
+
 }
