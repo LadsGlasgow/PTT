@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import com.lads.controller.ActionEventChoice;
+import ActionEventChoice;
 
 public class GuiChoice extends JFrame {
 	protected JButton quit;
@@ -16,6 +16,7 @@ public class GuiChoice extends JFrame {
 		this.setTitle("User Selection");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new FlowLayout());
+		this.setLocation(300, 300);
 		
 		quit = new JButton("Quit");
 		admin = new JButton("Administrator");
