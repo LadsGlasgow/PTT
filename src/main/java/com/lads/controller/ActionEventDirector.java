@@ -2,6 +2,7 @@ package com.lads.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.lads.models.FileIO;
 import com.lads.view.DirectorGUI;
 
 public class ActionEventDirector implements ActionListener {
@@ -17,6 +18,13 @@ public class ActionEventDirector implements ActionListener {
 		}
 		if(e.getSource() == frame.getClear()) {
 			frame.getEnterText().setText("");
+		}
+		if(e.getSource() == frame.getAdd()) {
+			//Code for loading the file
+			FileIO newFile = new FileIO(frame.getEnterText().getText());
+		}
+		if(e.getSource() == frame.getSubmit()) {
+			//Code for writing the requirements from the TextArea to the file.
 		}
 	}
 	
