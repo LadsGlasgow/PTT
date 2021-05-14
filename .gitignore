@@ -23,6 +23,8 @@
 hs_err_pid*
 
 # IntelliJ project files
+pom.xml
+/test
 .idea
 *.iml
 out
@@ -41,3 +43,4 @@ gen
 .DS_Store
 /bin/
 /Daire_test
+/.idea
