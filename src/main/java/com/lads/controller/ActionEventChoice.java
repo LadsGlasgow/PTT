@@ -16,14 +16,14 @@ public class ActionEventChoice implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == frame.quit) {
+		if(e.getSource() == frame.getQuit()) {
 			System.exit(0);
 		}
-		if(e.getSource() == frame.admin) {
+		if(e.getSource() == frame.getAdmin()) {
 			AdminGUI GUI = new AdminGUI();
 			GUI.setVisible(true);
 		}
-		if(e.getSource() == frame.director) {
+		if(e.getSource() == frame.getDirector()) {
 			DirectorGUI GUI = new DirectorGUI();
 			GUI.setVisible(true);
 		}

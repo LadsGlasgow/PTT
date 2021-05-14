@@ -12,11 +12,11 @@ public class ActionEventDirector implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == frame.quit) {
+		if(e.getSource() == frame.getQuit()) {
 			System.exit(0);
 		}
-		if(e.getSource() == frame.clear) {
-			frame.enterText.setText("");
+		if(e.getSource() == frame.getClear()) {
+			frame.getEnterText().setText("");
 		}
 	}
 	
