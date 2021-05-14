@@ -1,16 +1,17 @@
 package com.lads.view;
 import java.awt.FlowLayout;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import ActionEventChoice;
+import com.lads.controller.*;
 
 public class GuiChoice extends JFrame {
-	protected JButton quit;
-	protected JButton admin;
-	protected JButton director;
+	private JButton quit;
+	private JButton admin;
+	private JButton director;
 	public GuiChoice() {
 		this.setSize(500, 100);
 		this.setTitle("User Selection");
@@ -23,10 +24,10 @@ public class GuiChoice extends JFrame {
 		director = new JButton("Director");
 		JLabel choiceLabel = new JLabel("Please select your role:");
 		
-		/*ActionEventChoice handler = new ActionEventChoice(this);
+		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
 		director.addActionListener(handler);
-		admin.addActionListener(handler);*/
+		admin.addActionListener(handler);
 		
 		this.add(choiceLabel);
 		this.add(admin);
@@ -37,4 +38,14 @@ public class GuiChoice extends JFrame {
 		GuiChoice gui = new GuiChoice();
 		gui.setVisible(true);
 	}
+	public JButton getQuit() {
+		return quit;
+	}
+	public JButton getAdmin() {
+		return admin;
+	}
+	public JButton getDirector() {
+		return director;
+	}
+	
 }

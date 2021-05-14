@@ -1,5 +1,6 @@
 package com.lads.view;
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,14 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import ActionEventDirector;
+//import ActionEventDirector;
+import com.lads.controller.*;
 
 public class DirectorGUI extends JFrame {
-	protected JButton quit;
-	protected JButton submit;
-	protected JButton clear;
-	protected JTextArea enterText;
-	protected JButton importFile;
+	private JButton quit;
+	private JButton submit;
+	private JButton clear;
+	private JTextArea enterText;
+	private JButton importFile;
 	
 	public DirectorGUI() {
 		this.setSize(700, 500);
@@ -58,14 +60,14 @@ public class DirectorGUI extends JFrame {
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
 			
 		
-		/*ActionEventDirector handler = new ActionEventDirector(this);
-		quit.addActionListener(handler);
+		ActionEventDirector handler = new ActionEventDirector(this);
+		getQuit().addActionListener(handler);
 		clear.addActionListener(handler);
-		submit.addActionListener(handler);*/
+		submit.addActionListener(handler);
 		
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
-		buttonPanel.add(quit);
+		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
 		subPanel.add(fileDirectory);
 		subPanel.add(importFile);
@@ -84,4 +86,21 @@ public class DirectorGUI extends JFrame {
 		DirectorGUI gui = new DirectorGUI();
 		gui.setVisible(true);
 	}
+	public JButton getQuit() {
+		return quit;
+	}
+	public JButton getSubmit() {
+		return submit;
+	}
+	public JButton getClear() {
+		return clear;
+	}
+	public JTextArea getEnterText() {
+		return enterText;
+	}
+	public JButton getImportFile() {
+		return importFile;
+	}
+	
+	
 }

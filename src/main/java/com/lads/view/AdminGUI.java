@@ -1,5 +1,6 @@
 package com.lads.view;
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -10,15 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import ActionEventAdmin;
+//import ActionEventAdmin;
+import com.lads.controller.*;
 
 public class AdminGUI extends JFrame {
-	protected JButton quit;
-	protected JButton submit;
-	protected JButton clearBut;
-	protected JTextArea teacherDisplay;
-	protected JTextField search;
-	protected JButton run;
+	private JButton quit;
+	private JButton submit;
+	private JButton clearBut;
+	private JTextArea teacherDisplay;
+	private JTextField search;
+	private JButton run;
 	//
 	public AdminGUI() {
 		this.setSize(700, 500);
@@ -55,9 +57,9 @@ public class AdminGUI extends JFrame {
 		teacherDisplay = new JTextArea(10, 10);
 		JTextField fileDirectory = new JTextField("[Please Enter the file's directory here]");
 		
-		/*ActionEventAdmin handler = new ActionEventAdmin(this);
+		ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
-		clearBut.addActionListener(handler);*/
+		clearBut.addActionListener(handler);
 		
 		searchBar.add(search);
 		searchBar.add(clear);
@@ -91,4 +93,23 @@ public class AdminGUI extends JFrame {
 		AdminGUI gui = new AdminGUI();
 		gui.setVisible(true);
 	}
+	public JButton getQuit() {
+		return quit;
+	}
+	public JButton getSubmit() {
+		return submit;
+	}
+	public JButton getClearBut() {
+		return clearBut;
+	}
+	public JTextArea getTeacherDisplay() {
+		return teacherDisplay;
+	}
+	public JTextField getSearch() {
+		return search;
+	}
+	public JButton getRun() {
+		return run;
+	}
+	
 }
