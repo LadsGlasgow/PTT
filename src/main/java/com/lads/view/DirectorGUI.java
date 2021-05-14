@@ -22,7 +22,7 @@ public class DirectorGUI extends JFrame {
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
-	private JButton importFile;
+	private JButton add;
 	
 	public DirectorGUI() {
 		this.setSize(700, 500);
@@ -46,7 +46,7 @@ public class DirectorGUI extends JFrame {
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
 		enterText = new JTextArea(25, 30);
-		importFile = new JButton("Import");
+		add = new JButton("Add");
 		
 		
 		enterText.setLineWrap(true);
@@ -70,7 +70,7 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
 		subPanel.add(fileDirectory);
-		subPanel.add(importFile);
+		subPanel.add(add);
 		mainPanel.add(enterText, BorderLayout.CENTER);
 		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
@@ -98,8 +98,8 @@ public class DirectorGUI extends JFrame {
 	public JTextArea getEnterText() {
 		return enterText;
 	}
-	public JButton getImportFile() {
-		return importFile;
+	public JButton getAdd() {
+		return add;
 	}
 	
 	
