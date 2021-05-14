@@ -6,7 +6,7 @@ public class Date {
     private int year;
 
     public Date(int year,int month,int day){
-        this.day = day;
+        this.year = year;
         this.month = month;
         this.day = day;
     }
@@ -21,7 +21,12 @@ public class Date {
 	public int getYear() {
 		return year;
 	}
-    
+
+    @Override
+    public String toString() {
+        return day + "|" + month  + "|" + year   + "|";
+    }
+
     //clone method
     public Date clone(){
 		return new Date(day, month, year);

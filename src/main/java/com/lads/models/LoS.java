@@ -2,7 +2,7 @@ package com.lads.models;
 
 import java.io.PrintStream;
 
-public class LoS implements List{
+public class LoS implements List<Subject>{
 	
 	Subject[] LoS;
 	
@@ -10,7 +10,7 @@ public class LoS implements List{
 		this.LoS = new Subject[1000]; // max # subjects set to 1000
 	}
 	
-	public void add(Object s) {
+	public void add(Subject s) {
 		for (int i = 0; i < LoS.length; i++) {
 			if(LoS[i] == null) {
 				LoS[i] = (Subject) s;
@@ -19,7 +19,7 @@ public class LoS implements List{
 		}
 	}
 	
-	public void remove(Object s) {
+	public void remove(Subject s) {
 		for (int i = 0; i < LoS.length; i++) {
 			if(LoS[i] == s) {
 				LoS[i] = null;
@@ -42,5 +42,15 @@ public class LoS implements List{
 			System.out.println();
 			}
 		}
+	}
+
+	@Override
+	public List<Subject> createEmptyList() {
+		return new LoS();
+	}
+
+	@Override
+	public Subject[] getArray() {
+		return this.LoS;
 	}
 }

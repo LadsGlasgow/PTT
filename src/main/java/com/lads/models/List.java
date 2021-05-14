@@ -8,5 +8,8 @@ public interface List<T> {
 	public void remove(T y);
 	public T find(String y);
 	public void print(PrintStream y);
+
+	public  List<T> createEmptyList();
+	public T[] getArray();
 	
 }

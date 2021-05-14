@@ -2,18 +2,39 @@ package com.lads.models;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Teacher {
+public class Teacher implements DataFactory<Teacher> {
 
     private String name;
     private Date dob;
-    private ArrayList<String> trainings_due;
-    private ArrayList<String> trainings_taken;
+    private ArrayList<String> trainings_due = new ArrayList<>();
+    private ArrayList<String> trainings_taken = new ArrayList<>();
 
     //initialize with basic information.
     public Teacher(String name, Date dob){
         this.name = name;
         this.dob = dob;
+
+    }
+
+    public Teacher(){
+
+    }
+
+    //Factory method for teacher
+    //0:name, 1~3 dob,4: trainings_due, 5:trainings_taken
+    //e.g.: StevenJobs | 1955 | 2 | 24 | Design,Management | Python,Java
+    @Override
+    public Teacher createObject(String ...parameters) {
+        Teacher teacher = new Teacher(parameters[0].trim(),new Date(
+                Integer.parseInt(parameters[1].trim()),Integer.parseInt(parameters[2].trim()),Integer.parseInt(parameters[3].trim()))
+        );
+        String[] trainings_due = parameters[4].split(",");
+        String[]  trainings_taken = parameters[5].split(",");
+        teacher.addTrainingDue(trainings_due);
+        teacher.addTrainingTaken(trainings_taken);
+        return teacher;
     }
 
     /**
@@ -21,7 +42,7 @@ public class Teacher {
      */
     public void addTrainingDue(String ...trainings){
         for (String training:trainings){
-            this.trainings_taken.add(training);
+            this.trainings_due.add(training);
         }
     }
 
@@ -35,7 +56,13 @@ public class Teacher {
             this.trainings_taken.add(training);
         }
     }
-    
+
+    //this method decide the format of data stored.
+    @Override
+    public String toString() {
+        return  name + "|" + dob + "|" + this.trainings_due.toString() + "|" + this.trainings_taken.toString();
+    }
+
     public String getName() {
 		return this.name;
 	}
@@ -48,5 +75,7 @@ public class Teacher {
 		ps.print(String.format("Teacher is %s with dob: %02d/%02d/%04d", this.getName(), this.getDob().getDay(),this.getDob().getMonth(),
 				this.getDob().getYear()));
 	}
+
+
 
 }
