@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -35,26 +36,24 @@ public class DirectorGUI extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		JPanel northPanel = new JPanel();
 		JPanel subPanel = new JPanel();
-		JPanel subPanel2 = new JPanel();
 		
 		mainPanel.setLayout(new BorderLayout());
 		subPanel.setLayout(new FlowLayout());
-		
-		
 		
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
 		enterText = new JTextArea(25, 30);
 		add = new JButton("Add");
-		
-		
 		enterText.setLineWrap(true);
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
 		JTextField fileDirectory = new JTextField("[Please Enter the file's directory here]");
+		
+		JScrollPane scroll = new JScrollPane(enterText);
+		
 		instruction.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
@@ -68,12 +67,13 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
+		
 		northPanel.add(instruction);
 		subPanel.add(fileDirectory);
 		subPanel.add(add);
-		mainPanel.add(enterText, BorderLayout.CENTER);
-		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
+		mainPanel.add(scroll, BorderLayout.CENTER);
+		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(buttonPanel, BorderLayout.SOUTH);
