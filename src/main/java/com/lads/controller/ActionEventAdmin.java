@@ -12,11 +12,11 @@ public class ActionEventAdmin implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == frame.quit) {
+		if(e.getSource() == frame.getQuit()) {
 			System.exit(0);
 		}
-		if(e.getSource() == frame.clearBut) {
-			frame.teacherDisplay.setText("");
+		if(e.getSource() == frame.getClearBut()) {
+			frame.getTeacherDisplay().setText("");
 		}
 	}
 	
