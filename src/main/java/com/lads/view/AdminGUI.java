@@ -26,10 +26,7 @@ public class AdminGUI extends JFrame {
 	private JButton run;
 	private JTextArea classRequirements;
 	private JTextField fileDirectory;
-	public JTextField getFileDirectory() {
-		return fileDirectory;
-	}
-	//
+	
 	public AdminGUI() {
 		this.setSize(700, 500);
 		this.setTitle("Administrator - Locate Teachers with Required Skills");
@@ -58,7 +55,7 @@ public class AdminGUI extends JFrame {
 		run = new JButton("Get File");
 		submit = new JButton("Submit Training");
 		
-		JLabel subjectInst = new JLabel("Classes without Teachers:");
+		JLabel subjectInst = new JLabel("Modules without Teachers:");
 		JLabel teacherInst = new JLabel("Enter skill to find suitable teachers:");
 		
 		classRequirements = new JTextArea(10, 10);
@@ -68,7 +65,7 @@ public class AdminGUI extends JFrame {
 		teacherDisplay = new JTextArea(10, 10);
 		JScrollPane scroll2 = new JScrollPane(teacherDisplay);
 		fileDirectory = new JTextField("[Please Enter the file's directory here]");
-		JTextField training = new JTextField("Enter Lab Name and Teacher Name to organise training");
+		JTextField training = new JTextField("Enter Training Name and Teacher Name to organise training");
 		
 		ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
@@ -95,9 +92,6 @@ public class AdminGUI extends JFrame {
 		mainPanel.add(textBoxPanel, BorderLayout.CENTER);
 		mainPanel.add(directoryPanel, BorderLayout.NORTH);
 		mainPanel.add(trainingPanel, BorderLayout.SOUTH);
-		
-		
-	
 		
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(northPanel, BorderLayout.NORTH);
@@ -135,5 +129,9 @@ public class AdminGUI extends JFrame {
 	public JButton getRun() {
 		return run;
 	}
+	public JTextField getFileDirectory() {
+		return fileDirectory;
+	}
+	
 	
 }
