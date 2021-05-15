@@ -30,8 +30,11 @@ public class Teacher implements DataFactory<Teacher> {
         Teacher teacher = new Teacher(parameters[0].trim(),new Date(
                 Integer.parseInt(parameters[1].trim()),Integer.parseInt(parameters[2].trim()),Integer.parseInt(parameters[3].trim()))
         );
-        String[] trainings_due = parameters[4].split(",");
-        String[]  trainings_taken = parameters[5].split(",");
+        //delete "[" "]" and then split with ","
+        String[] trainings_due = parameters[4].
+                substring(1,parameters[4].length() - 1).split(",");
+        String[]  trainings_taken = parameters[5].
+                substring(1,parameters[5].length() - 1).split(",");
         teacher.addTrainingDue(trainings_due);
         teacher.addTrainingTaken(trainings_taken);
         return teacher;
@@ -42,7 +45,7 @@ public class Teacher implements DataFactory<Teacher> {
      */
     public void addTrainingDue(String ...trainings){
         for (String training:trainings){
-            this.trainings_due.add(training);
+            this.trainings_due.add(training.trim());
         }
     }
 
@@ -53,14 +56,14 @@ public class Teacher implements DataFactory<Teacher> {
      */
     public void addTrainingTaken(String ...trainings){
         for (String training:trainings){
-            this.trainings_taken.add(training);
+            this.trainings_taken.add(training.trim());
         }
     }
 
     //this method decide the format of data stored.
     @Override
     public String toString() {
-        return  name + "|" + dob + "|" + this.trainings_due.toString() + "|" + this.trainings_taken.toString();
+        return  name + "|" + dob + "|" + this.trainings_due.toString() + "|" + this.trainings_taken.toString() + "\n";
     }
 
     public String getName() {
