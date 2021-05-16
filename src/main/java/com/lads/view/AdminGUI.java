@@ -20,11 +20,12 @@ public class AdminGUI extends JFrame {
 	private JButton searchButton;
 	private JTextField teacherSelected;
 	private JTextArea teacherText;
+	private JTextField fileDirectory;
 
 
 	public AdminGUI() {
 
-		this.setSize(1200, 500);
+		this.setSize(1300, 500);
 		this.setTitle("Administrator - Locate Teachers with Required Skills");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
@@ -33,6 +34,7 @@ public class AdminGUI extends JFrame {
 		GridLayout gLayout = new GridLayout(0, 2);
 		gLayout.setHgap(10);
 		
+		JPanel textBoxPanel = new JPanel(gLayout);
 		JPanel mainPanel = new JPanel(gLayout);
 		classPanel = new JPanel(new BorderLayout());
 
@@ -42,14 +44,16 @@ public class AdminGUI extends JFrame {
 		JPanel searchBar = new JPanel();
 		JPanel northPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
+		JPanel directoryPanel = new JPanel();
 		quit = new JButton("Quit");
 		clearBut = new JButton("Clear");
-		run = new JButton("Run");
+		run = new JButton("Get File");
+		submit = new JButton("Submit Training");
 		teacherSelected = new JTextField("Select the teachers(moduleName|teacherName).e,g. 'ADS|Simon,Chris'");
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
 		//instructions.setLineWrap(true);n
-		JLabel subjectInst = new JLabel("Classes without Teachers:");
+		JLabel subjectInst = new JLabel("Modules without Teachers:");
 		JLabel teacherInst = new JLabel("Enter skill to find suitable teachers:");
 		
 //		JTextArea classRequirements = new JTextArea(10, 10);
@@ -64,7 +68,7 @@ public class AdminGUI extends JFrame {
 
 
 		teacherDisplay = new JPanel(new BorderLayout());
-//		fileDirectory = new JTextField("[Please Enter the file's directory here]");
+		fileDirectory = new JTextField("[Please enter the file's directory here]");
 
 		//refresh with teacher in file.
 		refreshSearchResult(new FileIO<Teacher>(FileIO.teacherFilePath).fetchData(new Teacher(),new LoT()));
@@ -76,6 +80,8 @@ public class AdminGUI extends JFrame {
 		searchButton.addActionListener(handler);
 		run.addActionListener(handler);
 
+		directoryPanel.add(fileDirectory);
+		directoryPanel.add(run);
 		searchBar.add(search);
 		searchBar.add(searchButton);
 		teacherPanel.add(searchBar, BorderLayout.NORTH);
@@ -104,6 +110,7 @@ public class AdminGUI extends JFrame {
 //		classPanel.add(fileDirectory, BorderLayout.SOUTH);
 		mainPanel.add(classPanel);
 		mainPanel.add(teacherPanel);
+		buttonPanel.add(directoryPanel);
 		//northPanel.add(instructions);
 		//buttonPanel.add(clearBut);
 		buttonPanel.add(run);
@@ -142,9 +149,9 @@ public class AdminGUI extends JFrame {
 		return run;
 	}
 
-//	public JTextField getFileDirectory() {
-//		return fileDirectory;
-//	}
+	public JTextField getFileDirectory() {
+		return fileDirectory;
+	}
 
 	public JPanel getClassPanel() {
 		return classPanel;

@@ -24,6 +24,7 @@ public class DirectorGUI extends JFrame {
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
+	private JButton add;
 
 
 	public DirectorGUI() {
@@ -51,13 +52,13 @@ public class DirectorGUI extends JFrame {
 		enterText.setLineWrap(true);
 		JScrollPane scroll = new JScrollPane(enterText);
 //		importFile = new JButton("Import");
-		
-		
-		
+		enterText = new JTextArea(25, 30);
+		add = new JButton("Add");
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
+		JTextField fileDirectory = new JTextField("[Please enter the file's directory here]");
 //		fileDirectory = new JTextField(FileIO.moduleFilePath);
 
 		instruction.setHorizontalAlignment(JLabel.CENTER);
@@ -74,6 +75,10 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
+		
+		subPanel.add(fileDirectory);
+		subPanel.add(add);
+		
 //		subPanel.add(fileDirectory);
 //		subPanel.add(importFile);
 		mainPanel.add(scroll, BorderLayout.CENTER);
