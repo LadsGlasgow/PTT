@@ -1,37 +1,38 @@
 package com.lads.models;
 
-import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LoM implements List<Module>{
-	private int currentIndex;
+	private int lastIndex;
 	private Module[] loM;
 	
 	public LoM() {
 		this.loM = new Module[1000]; // max # subjects set to 1000
-		this.currentIndex = -1;
+		this.lastIndex = -1;
 
 	}
 	
 	public void add(Module m) {
-		this.loM[++currentIndex] = m;
+		this.loM[++lastIndex] = m;
 
 	}
 	
 	public void remove(Module m) {
-		for (int i = 0; i <= this.currentIndex; i++) {
+		for (int i = 0; i <= this.lastIndex; i++) {
 			if(loM[i].getName().equals(m.getName())) {
 				//swap from i
-				for (int j = i; j < this.currentIndex; j++) {
+				for (int j = i; j < this.lastIndex; j++) {
 					this.loM[j] = this.loM[j+1];
 				}
 				//set the last one to null
-				this.loM[currentIndex--] = null;
+				this.loM[lastIndex--] = null;
 			}
 		}
 	}
 	
 	public Module findByName(String name) {
-		for (int i = 0; i <= currentIndex; i++) {
+		for (int i = 0; i <= lastIndex; i++) {
 			if(loM[i].getName().equals(name)) {
 				return loM[i];
 			}
@@ -47,8 +48,24 @@ public class LoM implements List<Module>{
 		return this.loM;
 	}
 
-	public int getCurrentIndex() {
-		return currentIndex;
+	public Module[] getArrayWithoutTeacher() {
+		Module[] modules = new Module[100];
+		int index = -1;
+
+		for (int i = 0; i <= lastIndex; i++) {
+			if (loM[i].getTeachers().size() == 0){
+				modules[++index] = loM[i];
+			}
+		}
+
+		Module[] result = Arrays.copyOf(modules,index+1);
+
+		return  result;
+
+	}
+
+	public int getLastIndex() {
+		return lastIndex;
 	}
 
 }

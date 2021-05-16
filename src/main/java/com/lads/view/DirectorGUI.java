@@ -16,14 +16,16 @@ import javax.swing.JTextField;
 
 //import ActionEventDirector;
 import com.lads.controller.*;
+import com.lads.models.FileIO;
 
 public class DirectorGUI extends JFrame {
 	private JButton quit;
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
-	private JButton importFile;
-	
+//	private JButton importFile;
+//	private JTextField fileDirectory;
+
 	public DirectorGUI() {
 		this.setSize(700, 500);
 		this.setTitle("Director - Add teaching requirements");
@@ -45,8 +47,8 @@ public class DirectorGUI extends JFrame {
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
-		enterText = new JTextArea(25, 30);
-		importFile = new JButton("Import");
+		enterText = new JTextArea("(name|numberStaffRequired|TrainingRequired)  e.g.\nDTA|2|[java]\nProg|1|[python,business]",25, 30);
+//		importFile = new JButton("Import");
 		
 		
 		enterText.setLineWrap(true);
@@ -54,7 +56,8 @@ public class DirectorGUI extends JFrame {
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
-		JTextField fileDirectory = new JTextField("[Please Enter the file's directory here]");
+//		fileDirectory = new JTextField(FileIO.moduleFilePath);
+
 		instruction.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
@@ -69,8 +72,8 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
-		subPanel.add(fileDirectory);
-		subPanel.add(importFile);
+//		subPanel.add(fileDirectory);
+//		subPanel.add(importFile);
 		mainPanel.add(enterText, BorderLayout.CENTER);
 		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
@@ -98,9 +101,11 @@ public class DirectorGUI extends JFrame {
 	public JTextArea getEnterText() {
 		return enterText;
 	}
-	public JButton getImportFile() {
-		return importFile;
-	}
-	
-	
+//	public JButton getImportFile() {
+//		return importFile;
+//	}
+//
+//	public JTextField getFileDirectory() {
+//		return fileDirectory;
+//	}
 }

@@ -10,5 +10,7 @@ public interface  List<T> {
 
 	public  List<T> createEmptyList();
 	public  T[] getArray();
-	
+	public int getLastIndex();
+
+
 }

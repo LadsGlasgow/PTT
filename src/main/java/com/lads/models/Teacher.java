@@ -16,6 +16,7 @@ public class Teacher implements DataFactory<Teacher> {
         this.name = name;
         this.dob = dob;
 
+
     }
 
     public Teacher(){
@@ -74,11 +75,23 @@ public class Teacher implements DataFactory<Teacher> {
         return dob;
     }
 
+    public ArrayList<String> getTrainings_taken() {
+        return trainings_taken;
+    }
+
     public void print(PrintStream ps) {
 		ps.print(String.format("Teacher is %s with dob: %02d/%02d/%04d", this.getName(), this.getDob().getDay(),this.getDob().getMonth(),
 				this.getDob().getYear()));
 	}
 
+	public boolean hasTakenTraining(String training){
+        for (int i = 0; i < trainings_taken.size(); i++) {
+            if (trainings_taken.get(i).equals(training)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

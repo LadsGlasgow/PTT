@@ -12,10 +12,13 @@ public class FileIO<T extends DataFactory> implements DataHandling<T>{
 	//path to come from admin & director GUI (textbox)
     private String path;
 
+    //global attribute of path.
+    public static String teacherFilePath = "C:\\Users\\flyingjack\\OneDrive\\UofGlasgow Files\\COMPSCI5059 Software Engineering M\\PTT\\src\\main\\java\\com\\lads\\data\\TeacherData.txt";
+    public static String moduleFilePath = "C:\\Users\\flyingjack\\OneDrive\\UofGlasgow Files\\COMPSCI5059 Software Engineering M\\PTT\\src\\main\\java\\com\\lads\\data\\ModuleData.txt";
+
 
     public FileIO(String path){
        this.path = path;
-
     }
 
     @Override
@@ -52,11 +55,14 @@ public class FileIO<T extends DataFactory> implements DataHandling<T>{
 
     }
 
-    @Override
     public void storeData(List<T> data) {
+        storeData(data,false);
+    }
+
+    public void storeData(List<T> data,boolean isAddingToLast) {
         FileWriter fw = null;
         try {
-            fw = new FileWriter(this.path);
+            fw = new FileWriter(this.path,isAddingToLast);
 
             // Implement file writing
             for (int i = 0; i < data.getArray().length; i++) {

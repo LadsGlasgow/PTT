@@ -2,18 +2,20 @@ package com.lads.view;
 import java.awt.FlowLayout;
 
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 import com.lads.controller.*;
+import com.lads.models.FileIO;
 
 public class GuiChoice extends JFrame {
 	private JButton quit;
 	private JButton admin;
 	private JButton director;
+	private JTextField teachersFilePath;
+	private JTextField modulesFilePath;
+
 	public GuiChoice() {
-		this.setSize(500, 100);
+		this.setSize(500, 120);
 		this.setTitle("User Selection");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new FlowLayout());
@@ -23,7 +25,11 @@ public class GuiChoice extends JFrame {
 		admin = new JButton("Administrator");
 		director = new JButton("Director");
 		JLabel choiceLabel = new JLabel("Please select your role:");
-		
+
+
+		teachersFilePath = new JTextField(FileIO.teacherFilePath,20);
+		modulesFilePath = new JTextField(FileIO.moduleFilePath,20);
+
 		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
 		director.addActionListener(handler);
@@ -33,6 +39,11 @@ public class GuiChoice extends JFrame {
 		this.add(admin);
 		this.add(director);
 		this.add(quit);
+
+		this.add(new JLabel("Please input the path of teachers file:"));
+		this.add(teachersFilePath);
+		this.add(new JLabel("Please input the path of classes file:"));
+		this.add(modulesFilePath);
 	}
 	public static void main(String[] args) {
 		GuiChoice gui = new GuiChoice();
@@ -47,5 +58,13 @@ public class GuiChoice extends JFrame {
 	public JButton getDirector() {
 		return director;
 	}
-	
+
+
+	public JTextField getModulesFilePath() {
+		return modulesFilePath;
+	}
+
+	public JTextField getTeachersFilePath() {
+		return teachersFilePath;
+	}
 }

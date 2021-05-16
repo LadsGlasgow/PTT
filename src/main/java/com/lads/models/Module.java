@@ -46,9 +46,27 @@ public class Module implements DataFactory<Module> {
 	//e.g.: AdvancedProgram|[Simon,Maria]|2|[Python,Java]
 	public Module createObject(String... parameters) {
 		Module module = new Module(parameters[0].trim(),Integer.parseInt(parameters[2].trim()));
-		module.addTeacher(parameters[1].trim().substring(1,parameters[1].length() - 1).split(","));
-		module.addTraining(parameters[3].trim().substring(1,parameters[3].length() - 1).split(","));
+		String[] teachers = parameters[1].trim().substring(1,parameters[1].length() - 1).split(",");
+		if (teachers.length > 0 && !teachers[0].equals("")){
+			module.addTeacher(teachers);
+		}
+		String[] trainings = parameters[3].trim().substring(1,parameters[3].length() - 1).split(",");
+		if (trainings.length > 0 && !trainings[0].equals("")){
+			module.addTraining(trainings);
+		}
 
 		return module;
+	}
+
+	public int getNumberStaffRequired() {
+		return numberStaffRequired;
+	}
+
+	public ArrayList<String> getTrainingsNeed() {
+		return trainingsNeed;
+	}
+
+	public ArrayList<String> getTeachers() {
+		return teachers;
 	}
 }
