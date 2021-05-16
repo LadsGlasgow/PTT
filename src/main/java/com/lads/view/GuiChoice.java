@@ -59,7 +59,6 @@ public class GuiChoice extends JFrame {
 		return director;
 	}
 
-
 	public JTextField getModulesFilePath() {
 		return modulesFilePath;
 	}

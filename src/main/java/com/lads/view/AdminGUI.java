@@ -16,12 +16,12 @@ public class AdminGUI extends JFrame {
 	private JPanel teacherDisplay;
 	private JTextField search;
 	private JButton run;
-//	private JTextField fileDirectory;
 	private JPanel classPanel;
 	private JButton searchButton;
 	private JTextField teacherSelected;
+	private JTextArea teacherText;
 
-	//
+
 	public AdminGUI() {
 
 		this.setSize(1200, 500);
@@ -34,7 +34,7 @@ public class AdminGUI extends JFrame {
 		gLayout.setHgap(10);
 		
 		JPanel mainPanel = new JPanel(gLayout);
-		classPanel = new JPanel(new GridLayout(10,1));
+		classPanel = new JPanel(new BorderLayout());
 
 
 		JPanel teacherPanel = new JPanel(new BorderLayout());
@@ -57,13 +57,18 @@ public class AdminGUI extends JFrame {
 
 		search = new JTextField("[Enter skill to search...]");
 		searchButton = new JButton("Search");
+		JTextArea classText = new JTextArea(40, 40);
+		teacherText = new JTextArea(40, 40);
+		JScrollPane scroll = new JScrollPane(classText);
+		//JScrollPane scroll2 = new JScrollPane(teacherText);
 
 
-		teacherDisplay = new JPanel(new GridLayout(10,2));
+		teacherDisplay = new JPanel(new BorderLayout());
 //		fileDirectory = new JTextField("[Please Enter the file's directory here]");
 
 		//refresh with teacher in file.
 		refreshSearchResult(new FileIO<Teacher>(FileIO.teacherFilePath).fetchData(new Teacher(),new LoT()));
+		//teacherDisplay.add(scroll2);
 
 		ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
@@ -81,18 +86,19 @@ public class AdminGUI extends JFrame {
 		teacherPanel.add(teacherTextBox, BorderLayout.CENTER);
 		teacherPanel.add(clearBut, BorderLayout.SOUTH);
 //		classPanel.add(classRequirements, BorderLayout.CENTER);
-		classPanel.add(subjectInst);
+		classPanel.add(subjectInst, BorderLayout.NORTH);
+		//classPanel.add(classText);
 
 		LoM loM = (LoM) (new FileIO<Module>(FileIO.moduleFilePath).fetchData(new Module(),new LoM()));
+		String s = "";
 		for (int i = 0; i < loM.getArrayWithoutTeacher().length; i++) {
-			JLabel jLabel = new JLabel(
+			s +=
 					"Class Name:" + loM.getArrayWithoutTeacher()[i].getName()
 					+ " * Number Staff Required:" + loM.getArrayWithoutTeacher()[i].getNumberStaffRequired()
-							+ "* Training Required"	+ loM.getArrayWithoutTeacher()[i].getTrainingsNeed().toString()
-			);
-			classPanel.add(jLabel);
-		}
-
+							+ "* Training Required"	+ loM.getArrayWithoutTeacher()[i].getTrainingsNeed().toString() + "\n"
+			;
+		} classText.setText(s);
+		classPanel.add(scroll);
 
 
 //		classPanel.add(fileDirectory, BorderLayout.SOUTH);
@@ -112,6 +118,7 @@ public class AdminGUI extends JFrame {
 		
 		
 	}
+	//To be deleted, here rn for convenience
 	public static void main(String[] args) {
 		AdminGUI gui = new AdminGUI();
 		gui.setVisible(true);
@@ -154,17 +161,17 @@ public class AdminGUI extends JFrame {
 	//refresh the search result
 	public void refreshSearchResult(List<Teacher> loT){
 		teacherDisplay.removeAll();
-
+		String s = "";
 		//generate radio button with teachers
 		for (int i = 0; i <= loT.getLastIndex(); i++) {
-			JLabel jLabel = new JLabel(
+			s +=
 					"name:" + loT.getArray()[i].getName()
 							+ " date:" + loT.getArray()[i].getDob() +
-							" Training Taken:" + loT.getArray()[i].getTrainings_taken()
-			);
-			teacherDisplay.add(jLabel);
-		}
-
+							" Training Taken:" + loT.getArray()[i].getTrainings_taken() + "\n"
+			;
+		} teacherText.setText(s);
+		JScrollPane scroll = new JScrollPane(teacherText);
+		teacherDisplay.add(scroll);
 		teacherDisplay.repaint();
 		teacherDisplay.validate();
 	}

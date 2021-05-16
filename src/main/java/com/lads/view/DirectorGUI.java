@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -47,10 +48,12 @@ public class DirectorGUI extends JFrame {
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
 		enterText = new JTextArea("(name|numberStaffRequired|TrainingRequired)  e.g.\nDTA|2|[java]\nProg|1|[python,business]",25, 30);
+		enterText.setLineWrap(true);
+		JScrollPane scroll = new JScrollPane(enterText);
 //		importFile = new JButton("Import");
 		
 		
-		enterText.setLineWrap(true);
+		
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
@@ -73,7 +76,7 @@ public class DirectorGUI extends JFrame {
 		northPanel.add(instruction);
 //		subPanel.add(fileDirectory);
 //		subPanel.add(importFile);
-		mainPanel.add(enterText, BorderLayout.CENTER);
+		mainPanel.add(scroll, BorderLayout.CENTER);
 		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
 		
@@ -84,6 +87,7 @@ public class DirectorGUI extends JFrame {
 		this.add(new JLabel("                     "), BorderLayout.EAST);
 
 	}
+	//To be deleted, here right now for convenience:
 	public static void main(String[] args) {
 		DirectorGUI gui = new DirectorGUI();
 		gui.setVisible(true);
