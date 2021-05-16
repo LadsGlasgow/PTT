@@ -1,0 +1,2 @@
+Max|2020|5|14|[management]|[python, java]
+Simon|2020|5|14|[management, French]|[business]
