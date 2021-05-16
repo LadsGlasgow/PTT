@@ -23,8 +23,7 @@ public class DirectorGUI extends JFrame {
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
-//	private JButton importFile;
-//	private JTextField fileDirectory;
+
 
 	public DirectorGUI() {
 		this.setSize(700, 500);
