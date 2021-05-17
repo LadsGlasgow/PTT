@@ -48,7 +48,7 @@ public class DirectorGUI extends JFrame {
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
-		enterText = new JTextArea("(name|numberStaffRequired|TrainingRequired)  e.g.\nDTA|2|[java]\nProg|1|[python,business]",25, 30);
+		enterText = new JTextArea("(Module name|Lab name|Number of staff required|Teacher name) ",25, 30);
 		enterText.setLineWrap(true);
 		JScrollPane scroll = new JScrollPane(enterText);
 //		importFile = new JButton("Import");
@@ -56,7 +56,7 @@ public class DirectorGUI extends JFrame {
 		add = new JButton("Add");
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
-		JLabel teacherAdd = new JLabel("Add a Teacher:");
+		JLabel teacherAdd = new JLabel("Add a teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
 		JTextField fileDirectory = new JTextField("[Please enter the file's directory here]");
 //		fileDirectory = new JTextField(FileIO.moduleFilePath);

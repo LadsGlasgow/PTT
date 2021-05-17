@@ -16,6 +16,8 @@ public class AdminGUI extends JFrame {
 	private JPanel teacherDisplay;
 	private JTextField search;
 	private JButton run;
+	private JButton add;
+	private JButton training;
 	private JPanel classPanel;
 	private JButton searchButton;
 	private JTextField teacherSelected;
@@ -48,12 +50,14 @@ public class AdminGUI extends JFrame {
 		quit = new JButton("Quit");
 		clearBut = new JButton("Clear");
 		run = new JButton("Get File");
+		add = new JButton("Add teacher");
+		training = new JButton("Scedule Training");
 		submit = new JButton("Submit Training");
-		teacherSelected = new JTextField("Select the teachers(moduleName|teacherName).e,g. 'ADS|Simon,Chris'");
+		teacherSelected = new JTextField("Add teacher to Lab / schedule training (Lab name|teacher name(s)) eg. 'Java|Simon R'");
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
 		//instructions.setLineWrap(true);n
-		JLabel subjectInst = new JLabel("Modules without Teachers:");
+		JLabel subjectInst = new JLabel("Labs which require teachers: (Lab name | Skills required)");
 		JLabel teacherInst = new JLabel("Enter skill to find suitable teachers:");
 		
 //		JTextArea classRequirements = new JTextArea(10, 10);
@@ -90,7 +94,7 @@ public class AdminGUI extends JFrame {
 		teacherTextBox.add(teacherSelected,BorderLayout.SOUTH);
 
 		teacherPanel.add(teacherTextBox, BorderLayout.CENTER);
-		teacherPanel.add(clearBut, BorderLayout.SOUTH);
+//		teacherPanel.add(clearBut, BorderLayout.SOUTH);
 //		classPanel.add(classRequirements, BorderLayout.CENTER);
 		classPanel.add(subjectInst, BorderLayout.NORTH);
 		//classPanel.add(classText);
@@ -114,6 +118,9 @@ public class AdminGUI extends JFrame {
 		//northPanel.add(instructions);
 		//buttonPanel.add(clearBut);
 		buttonPanel.add(run);
+		buttonPanel.add(add);
+		buttonPanel.add(training);
+		buttonPanel.add(clearBut);
 		buttonPanel.add(quit);
 
 
@@ -182,6 +189,4 @@ public class AdminGUI extends JFrame {
 		teacherDisplay.repaint();
 		teacherDisplay.validate();
 	}
-
-
 }
