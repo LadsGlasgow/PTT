@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.lads.models.FileIO;
+import com.lads.models.connection.FileIO;
 import com.lads.view.AdminGUI;
 import com.lads.view.DirectorGUI;
 import com.lads.view.GuiChoice;
@@ -23,19 +23,21 @@ public class ActionEventChoice implements ActionListener {
 			System.exit(0);
 		}
 		if(e.getSource() == frame.getAdmin()) {
-			FileIO.moduleFilePath = frame.getModulesFilePath().getText();
-			FileIO.teacherFilePath = frame.getTeachersFilePath().getText();
+			//set the file directory before leave
+			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 
 			AdminGUI GUI = new AdminGUI();
 			GUI.setVisible(true);
 		}
 		if(e.getSource() == frame.getDirector()) {
-			FileIO.moduleFilePath = frame.getModulesFilePath().getText();
-			FileIO.teacherFilePath = frame.getTeachersFilePath().getText();
+			//set the file directory before leave
+
+			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 
 			DirectorGUI GUI = new DirectorGUI();
 			GUI.setVisible(true);
 		}
+
 	}
 
 }

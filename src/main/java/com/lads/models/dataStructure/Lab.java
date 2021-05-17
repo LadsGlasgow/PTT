@@ -20,14 +20,25 @@ public class Lab extends BasicData {
 
     public void addTrainingRequired(String ...training){
         for (int i = 0; i < training.length; i++) {
-            this.trainingRequired.add(training[i].trim());
+            if (training[i]!=null){
+                this.trainingRequired.add(training[i].trim());
+            }
         }
     }
 
     public void addTeacher(Teacher ...teachers){
         for (int i = 0; i < teachers.length; i++) {
-            this.teachers.add(teachers[i]);
+            if (teachers[i]!=null){
+                this.teachers.add(teachers[i]);
+            }
         }
+    }
+
+    public boolean hasTeacher(){
+        if (this.teachers.size() <= 0){
+            return false;
+        }
+        return true;
     }
 
     //the format should be "name|numberOfStaffRequired|[trainingRequired]|[teachers]"
@@ -51,5 +62,13 @@ public class Lab extends BasicData {
         return   result + "]\n";
 
 
+    }
+
+    public int getNumberOfStaffRequired() {
+        return numberOfStaffRequired;
+    }
+
+    public ArrayList<String> getTrainingRequired() {
+        return trainingRequired;
     }
 }

@@ -5,14 +5,12 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 
 import com.lads.controller.*;
-import com.lads.models.FileIO;
 
 public class GuiChoice extends JFrame {
 	private JButton quit;
 	private JButton admin;
 	private JButton director;
-	private JTextField teachersFilePath;
-	private JTextField modulesFilePath;
+	private JTextField fileDirectory;
 
 	public GuiChoice() {
 		this.setSize(500, 120);
@@ -27,8 +25,7 @@ public class GuiChoice extends JFrame {
 		JLabel choiceLabel = new JLabel("Please select your role:");
 
 
-		teachersFilePath = new JTextField(FileIO.teacherFilePath,20);
-		modulesFilePath = new JTextField(FileIO.moduleFilePath,20);
+		fileDirectory = new JTextField(50);
 
 		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
@@ -40,10 +37,9 @@ public class GuiChoice extends JFrame {
 		this.add(director);
 		this.add(quit);
 
-		this.add(new JLabel("Please input the path of teachers file:"));
-		this.add(teachersFilePath);
-		this.add(new JLabel("Please input the path of classes file:"));
-		this.add(modulesFilePath);
+		this.add(new JLabel("Please input the file directory for data(end with \"\\\"(Windows) or \"/\"(Mac) )"));
+		this.add(fileDirectory);
+
 	}
 	public static void main(String[] args) {
 		GuiChoice gui = new GuiChoice();
@@ -59,11 +55,7 @@ public class GuiChoice extends JFrame {
 		return director;
 	}
 
-	public JTextField getModulesFilePath() {
-		return modulesFilePath;
-	}
-
-	public JTextField getTeachersFilePath() {
-		return teachersFilePath;
+	public JTextField getFileDirectory() {
+		return fileDirectory;
 	}
 }

@@ -47,13 +47,17 @@ public class Module extends BasicData {
 
 	public void addTeacher(Teacher ...teachers){
 		for (int i = 0; i < teachers.length; i++) {
-			this.teachers.add(teachers[i]);
+			if (teachers[i]!=null){
+				this.teachers.add(teachers[i]);
+			}
 		}
 	}
 
 	public void addLabs(Lab ...labs){
 		for (int i = 0; i < labs.length; i++) {
-			this.labs.add(labs[i]);
+			if (labs[i]!=null){
+				this.labs.add(labs[i]);
+			}
 		}
 	}
 }

@@ -67,7 +67,16 @@ public class Teacher extends BasicData {
         return false;
     }
 
+    public boolean hasSkill(String skill){
+        for (int i = 0; i < skills.size(); i++) {
+            if (skills.get(i).equals(skill)){
+                return true;
+            }
+        }
+        return false;
+    }
 
-
-
+    public ArrayList<String> getSkills() {
+        return skills;
+    }
 }

@@ -19,7 +19,9 @@ public class DirectorGUI extends JFrame {
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
+	//I supposed the add and the submit button are the same?
 	private JButton add;
+	private JTextField fileDirectory;
 
 
 	public DirectorGUI() {
@@ -43,17 +45,16 @@ public class DirectorGUI extends JFrame {
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
-		enterText = new JTextArea("(name|numberStaffRequired|TrainingRequired)  e.g.\nDTA|2|[java]\nProg|1|[python,business]",25, 30);
+		enterText = new JTextArea("(module_name|lab_name|numberStaffRequired|TrainingRequired)  e.g.\nModule1|SQLLab101|2|[SQL]\nModule2|JavaLab202|1|[java,python]",25, 30);
 		enterText.setLineWrap(true);
 		JScrollPane scroll = new JScrollPane(enterText);
 //		importFile = new JButton("Import");
-		enterText = new JTextArea(25, 30);
 		add = new JButton("Add");
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
-		JTextField fileDirectory = new JTextField("[Please enter the file's directory here]");
+		fileDirectory = new JTextField("[Please enter the file's directory here]");
 //		fileDirectory = new JTextField(FileIO.moduleFilePath);
 
 		instruction.setHorizontalAlignment(JLabel.CENTER);
@@ -65,7 +66,8 @@ public class DirectorGUI extends JFrame {
 		getQuit().addActionListener(handler);
 		clear.addActionListener(handler);
 		submit.addActionListener(handler);
-		
+		add.addActionListener(handler);
+
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
@@ -104,11 +106,18 @@ public class DirectorGUI extends JFrame {
 	public JTextArea getEnterText() {
 		return enterText;
 	}
-//	public JButton getImportFile() {
+
+	public JButton getAdd() {
+		return add;
+	}
+
+	public JTextField getFileDirectory() {
+		return fileDirectory;
+	}
+
+	//	public JButton getImportFile() {
 //		return importFile;
 //	}
 //
-//	public JTextField getFileDirectory() {
-//		return fileDirectory;
-//	}
+
 }
