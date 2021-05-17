@@ -2,10 +2,6 @@ package com.lads.view;
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +13,6 @@ import javax.swing.JTextField;
 
 //import ActionEventDirector;
 import com.lads.controller.*;
-import com.lads.models.FileIO;
 
 public class DirectorGUI extends JFrame {
 	private JButton quit;

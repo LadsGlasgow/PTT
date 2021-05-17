@@ -1,4 +1,0 @@
-DTA|[]|2|[java]
-Prog|[]|1|[python, business]
-DTA2|[]|2|[java]
-Prog2|[]|1|[python, business]

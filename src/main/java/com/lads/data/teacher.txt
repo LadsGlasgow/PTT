@@ -1,0 +1,2 @@
+Simon|2020|5|14|[training1]|[training1, training2]|[python, java]
+Max|2020|5|14|[java]|[training3]|[business]
