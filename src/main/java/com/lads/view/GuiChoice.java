@@ -25,7 +25,7 @@ public class GuiChoice extends JFrame {
 		JLabel choiceLabel = new JLabel("Please select your role:");
 
 
-		fileDirectory = new JTextField(30); 
+		fileDirectory = new JTextField(50);
 
 		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
@@ -39,8 +39,8 @@ public class GuiChoice extends JFrame {
 
 		this.add(new JLabel("Please input the file directory for data(end with \"\\\"(Windows) or \"/\"(Mac) )"));
 		this.add(fileDirectory);
-
 	}
+	
 	public static void main(String[] args) {
 		GuiChoice gui = new GuiChoice();
 		gui.setVisible(true);
