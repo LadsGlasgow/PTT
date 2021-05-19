@@ -17,7 +17,7 @@ public class ActionEventAdmin implements ActionListener{
 	}
 
 
-	//iterates through the list of teachers and prints their details to the text area
+	//refresh the search result
 	public void refreshSearchResult(Aggregate<Teacher> loT){
 		String s = "";
 
@@ -25,64 +25,98 @@ public class ActionEventAdmin implements ActionListener{
 			Teacher teacher = iterator.next();
 			s +=
 					"name:" + teacher.getName()
-							+ " date:" + teacher.getDob() +
+							+ " DOB:" + teacher.getDob() + // Changed to DOB
 							" Training Taken:" + teacher.getTrainings_taken() + "Skills:" + teacher.getSkills() +  "\n";
 		}
+
 		frame.getTeacherText().setText(s);
+
 	}
 
+	public void populateTeacherText() {
+		Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
+
+		String s = "";
+		for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
+			Lab lab = iterator.next();
+			//If the lab has no teacher...
+			if (!lab.hasTeacher()){
+				s +=
+						"Lab Name:" + lab.getName()
+								+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
+								+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n"
+				;
+			}
+
+		}
+		frame.getClassText().setText(s); //***ClassText will display all labs without a teacher.
+
+		Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
+		refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-
 		if(e.getSource() == frame.getQuit()) {
-			//save labs, module,teachers before leaving.
+			//save labs, module,teachers before leave.
 			FileIO.getInstance().storeData("module",SingletonLoM.getInstance());
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
+
 			System.exit(0);
 		}
-		//*** Don't need this anymore, edit and move this to GUI Choice
-		if (e.getSource() == frame.getImportFileButton()){
-			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
-			Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab");
+		//import from file.
+		if (e.getSource() == frame.getAddTraining()){
+/*			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
+			Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
 
 			String s = "";
 			for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
 				Lab lab = iterator.next();
-				//if the lab has no teacher
+				//If the lab has no teacher...
 				if (!lab.hasTeacher()){
 					s +=
 							"Lab Name:" + lab.getName()
 									+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
-									+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n";
+									+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n"
+					;
 				}
+
 			}
-			frame.getClassText().setText(s); // add lab details to view
+			frame.getClassText().setText(s); //***ClassText will display all labs without a teacher.
 
-			// add teacher details to the view
 			Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
-			refreshSearchResult(teacherAggregate);
-		}
-		
-		//add teachers to a lab
-		if (e.getSource() == frame.getAllocateLabButton()){
+			refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea */
 			
-			if (!frame.getTeacherSelected().getText().equals("")){ // if teacher textbox is not empty
-				String[] teachersSelected = frame.getTeacherSelected().getText().split("\\|"); // add teacher to array
+			String line = frame.getAddTraining().getText();
+			String[] nameAndTraining = line.split("|");
+			if(SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()) != null) {
+				SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()).addTrainingDue(nameAndTraining[1].trim());;
+			}else {
+				JOptionPane.showMessageDialog(null,"Cannot find teacher. Please ensure this teacher's name is entered correctly.");
+			}
+		
 
-				//** not sure how this code works (Dáire)
-				// if the lab has not previously been linked with this teacher they should get training
-				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[0].trim());
+
+		}
+		//submit lab allocation - Adding a teacher to a lab
+		if (e.getSource() == frame.getAllocateLabButton()){
+			//e.g. "DTALab101|Simon,Chris"
+			if (!frame.getTeacherSelected().getText().equals("")){
+				String[] teachersSelected = frame.getTeacherSelected().getText().split("\\|");
+
+				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[0].trim());//find the lab first
 				if (lab!=null){
 					for (String teacher_name:teachersSelected[1].trim().split(",")){
 						lab.addTeacher(SingletonLoT.getInstance().findByName(teacher_name));
 					}
 					JOptionPane.showMessageDialog(null,"Done");
+
 				}
 				else {
-					JOptionPane.showMessageDialog(null,"Cannot find the lab please check.");
+					JOptionPane.showMessageDialog(null,"Cannot find the lab please check."); //***Will only allow us to add Teachers to pre-existing Labs.
 				}
+
 			}
 
 			//save labs, module,teachers before leave.
@@ -90,13 +124,17 @@ public class ActionEventAdmin implements ActionListener{
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
 
-		}
 
+		}
+		//***Training Scheduler
+		
+		
+		
 
 		//search function
 		if (e.getSource() == frame.getSearchButton()){
 
-			String skillFilter = frame.getSearch().getText(); // get text from search bar
+			String skillFilter = frame.getSearch().getText();
 
 			//if user does not input anything, refresh with all teachers
 			if (skillFilter.equals("")){
