@@ -19,71 +19,69 @@ public class DirectorGUI extends JFrame {
 	private JButton submit;
 	private JButton clear;
 	private JTextArea enterText;
-	//I supposed the add and the submit button are the same?
 	private JButton add;
 	private JTextField fileDirectory;
 
 
 	public DirectorGUI() {
+		//Details of the JFrame itself.
 		this.setSize(700, 500);
 		this.setTitle("Director - Add teaching requirements");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.setLocation(300, 200);
 		
-		JPanel mainPanel = new JPanel();
+		//Instantiating the panels that will be required to achieve the desired layout.
+		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel buttonPanel = new JPanel();
 		JPanel northPanel = new JPanel();
-		JPanel subPanel = new JPanel();
-		JPanel subPanel2 = new JPanel();
+		JPanel subPanel = new JPanel(new FlowLayout());
 		
-		mainPanel.setLayout(new BorderLayout());
-		subPanel.setLayout(new FlowLayout());
-		
-
+		//Instantiating the instance variables - Components of the GUI that will be required by other classes.
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
 		enterText = new JTextArea("(module_name|lab_name|numberStaffRequired|TrainingRequired)  e.g.\nModule1|SQLLab101|2|[SQL]\nModule2|JavaLab202|1|[java,python]",25, 30);
 		enterText.setLineWrap(true);
-		JScrollPane scroll = new JScrollPane(enterText);
-//		importFile = new JButton("Import");
 		add = new JButton("Add");
+		fileDirectory = new JTextField("[Please enter the file's directory here]");
 		
+		//Adding a scrollbar to the JTextArea in order to ensure a large file can be read and displayed.
+		JScrollPane scroll = new JScrollPane(enterText);
+		//Instruction JLabels
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
-		fileDirectory = new JTextField("[Please enter the file's directory here]");
-//		fileDirectory = new JTextField(FileIO.moduleFilePath);
-
+		
+		//Setting the instructions to be aligned to the centre.
 		instruction.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
 			
-		
+		//Creating an object of type ActionEventDirector in order to add action listeners to the appropriate components.
 		ActionEventDirector handler = new ActionEventDirector(this);
 		getQuit().addActionListener(handler);
 		clear.addActionListener(handler);
 		submit.addActionListener(handler);
 		add.addActionListener(handler);
 
+		//Adding the components to the JPanels
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
 		
-		subPanel.add(fileDirectory);
-		subPanel.add(add);
+		//subPanel.add(fileDirectory);
+		//subPanel.add(add);
 		
-//		subPanel.add(fileDirectory);
-//		subPanel.add(importFile);
 		mainPanel.add(scroll, BorderLayout.CENTER);
 		mainPanel.add(subPanel, BorderLayout.SOUTH);
 		
-		
+		//Finally, adding the Panels to the main JFrame
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.add(northPanel, BorderLayout.NORTH);
+		//The below two lines add blank JLabels in order to add a border, preventing the JTextAreas from extending all the way to the sides of the interface.
 		this.add(new JLabel("                     "), BorderLayout.WEST);
 		this.add(new JLabel("                     "), BorderLayout.EAST);
 
@@ -113,10 +111,4 @@ public class DirectorGUI extends JFrame {
 	public JTextField getFileDirectory() {
 		return fileDirectory;
 	}
-
-	//	public JButton getImportFile() {
-//		return importFile;
-//	}
-//
-
 }
