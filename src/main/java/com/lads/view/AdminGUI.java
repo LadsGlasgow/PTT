@@ -50,7 +50,7 @@ public class AdminGUI extends JFrame {
 		allocateLabButton = new JButton("Add teacher to Lab");
 		addTraining = new JButton("Add Training");
 		submit = new JButton("Submit Training");
-		teacherSelected = new JTextField("Select the teachers(lab_name|teacherName).e,g. 'ADS|Simon,Chris'");
+		teacherSelected = new JTextField("Select the teachers(Lab name|Teacher name).e,g. 'ADS|Simon,Chris'");
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
 		//instructions.setLineWrap(true);n
@@ -70,7 +70,7 @@ public class AdminGUI extends JFrame {
 
 
 		teacherDisplay = new JPanel(new BorderLayout());
-		fileDirectory = new JTextField("To add training for a teacher, enter \"TeacherName | Training Required \"");
+		fileDirectory = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
 		teacherDisplay.add(scroll2);
 
 		//refresh with all teacher in file.

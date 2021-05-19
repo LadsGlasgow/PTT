@@ -2,6 +2,7 @@ package com.lads.view;
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,14 +35,14 @@ public class DirectorGUI extends JFrame {
 		//Instantiating the panels that will be required to achieve the desired layout.
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel buttonPanel = new JPanel();
-		JPanel northPanel = new JPanel();
+		JPanel northPanel = new JPanel(new GridLayout(3,0));
 		JPanel subPanel = new JPanel(new FlowLayout());
 		
 		//Instantiating the instance variables - Components of the GUI that will be required by other classes.
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
-		enterText = new JTextArea("(module_name|lab_name|numberStaffRequired|TrainingRequired)  e.g.\nModule1|SQLLab101|2|[SQL]\nModule2|JavaLab202|1|[java,python]",25, 30);
+		enterText = new JTextArea("",25, 30);
 		enterText.setLineWrap(true);
 		add = new JButton("Add");
 		fileDirectory = new JTextField("[Please enter the file's directory here]");
@@ -50,11 +51,15 @@ public class DirectorGUI extends JFrame {
 		JScrollPane scroll = new JScrollPane(enterText);
 		//Instruction JLabels
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
+		JLabel instruction2 = new JLabel("Module name|Lab name|number of staff required|Training required");
+		JLabel instruction3 = new JLabel("e.g Module1|SQLLab101|2|SQL");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
 		
 		//Setting the instructions to be aligned to the centre.
 		instruction.setHorizontalAlignment(JLabel.CENTER);
+		instruction2.setHorizontalAlignment(JLabel.CENTER);
+		instruction3.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
 			
@@ -70,6 +75,8 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
+		northPanel.add(instruction2);
+		northPanel.add(instruction3);
 		
 		//subPanel.add(fileDirectory);
 		//subPanel.add(add);
