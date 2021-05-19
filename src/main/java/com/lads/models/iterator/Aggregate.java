@@ -5,7 +5,7 @@ import com.lads.models.dataStructure.BasicData;
 import java.util.ArrayList;
 
 //Use iterator to hide the actual aggregate data
-public class Aggregate<T extends BasicData>  {
+public class Aggregate<T extends BasicData>  { //*** how does this generic extends work
     protected ArrayList<T> array = new ArrayList<>();
 
     public void add(T obj) {
@@ -28,6 +28,7 @@ public class Aggregate<T extends BasicData>  {
         return new ConcreteIterator();
     }
 
+    //*** what is a concrete iterator
     private class ConcreteIterator implements Iterator<T>{
         int index;
 

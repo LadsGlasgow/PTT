@@ -17,7 +17,7 @@ public class ActionEventAdmin implements ActionListener{
 	}
 
 
-	//refresh the search result
+	//iterates through the list of teachers and prints their details to the text area
 	public void refreshSearchResult(Aggregate<Teacher> loT){
 		String s = "";
 
@@ -28,9 +28,7 @@ public class ActionEventAdmin implements ActionListener{
 							+ " date:" + teacher.getDob() +
 							" Training Taken:" + teacher.getTrainings_taken() + "Skills:" + teacher.getSkills() +  "\n";
 		}
-
 		frame.getTeacherText().setText(s);
-
 	}
 
 	@Override
@@ -38,14 +36,13 @@ public class ActionEventAdmin implements ActionListener{
 
 
 		if(e.getSource() == frame.getQuit()) {
-			//save labs, module,teachers before leave.
+			//save labs, module,teachers before leaving.
 			FileIO.getInstance().storeData("module",SingletonLoM.getInstance());
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
-
 			System.exit(0);
 		}
-		//import from file.
+		//*** Don't need this anymore, edit and move this to GUI Choice
 		if (e.getSource() == frame.getImportFileButton()){
 			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 			Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab");
@@ -58,36 +55,34 @@ public class ActionEventAdmin implements ActionListener{
 					s +=
 							"Lab Name:" + lab.getName()
 									+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
-									+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n"
-					;
+									+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n";
 				}
-
 			}
-			frame.getClassText().setText(s);
+			frame.getClassText().setText(s); // add lab details to view
 
+			// add teacher details to the view
 			Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
 			refreshSearchResult(teacherAggregate);
-
-
 		}
-		//submit lab allocation
+		
+		//add teachers to a lab
 		if (e.getSource() == frame.getAllocateLabButton()){
-			//e.g. "DTALab101|Simon,Chris"
-			if (!frame.getTeacherSelected().getText().equals("")){
-				String[] teachersSelected = frame.getTeacherSelected().getText().split("\\|");
+			
+			if (!frame.getTeacherSelected().getText().equals("")){ // if teacher textbox is not empty
+				String[] teachersSelected = frame.getTeacherSelected().getText().split("\\|"); // add teacher to array
 
-				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[0].trim());//find the lab first
+				//** not sure how this code works (Dáire)
+				// if the lab has not previously been linked with this teacher they should get training
+				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[0].trim());
 				if (lab!=null){
 					for (String teacher_name:teachersSelected[1].trim().split(",")){
 						lab.addTeacher(SingletonLoT.getInstance().findByName(teacher_name));
 					}
 					JOptionPane.showMessageDialog(null,"Done");
-
 				}
 				else {
 					JOptionPane.showMessageDialog(null,"Cannot find the lab please check.");
 				}
-
 			}
 
 			//save labs, module,teachers before leave.
@@ -95,14 +90,13 @@ public class ActionEventAdmin implements ActionListener{
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
 
-
 		}
 
 
 		//search function
 		if (e.getSource() == frame.getSearchButton()){
 
-			String skillFilter = frame.getSearch().getText();
+			String skillFilter = frame.getSearch().getText(); // get text from search bar
 
 			//if user does not input anything, refresh with all teachers
 			if (skillFilter.equals("")){

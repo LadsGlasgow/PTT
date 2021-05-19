@@ -15,29 +15,25 @@ public class ActionEventChoice implements ActionListener {
 		this.frame = frame;
 	}
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == frame.getQuit()) {
 			System.exit(0);
 		}
 		if(e.getSource() == frame.getAdmin()) {
-			//set the file directory before leave
+			//sets the file directory attribute of the file object
 			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
-
-			AdminGUI GUI = new AdminGUI();
+			
+			
+			AdminGUI GUI = new AdminGUI(); // open admin GUI
 			GUI.setVisible(true);
 		}
 		if(e.getSource() == frame.getDirector()) {
 			//set the file directory before leave
-
 			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 
-			DirectorGUI GUI = new DirectorGUI();
+			DirectorGUI GUI = new DirectorGUI(); // open directory GUI
 			GUI.setVisible(true);
 		}
-
 	}
-
 }

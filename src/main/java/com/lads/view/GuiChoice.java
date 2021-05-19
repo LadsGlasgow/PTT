@@ -25,7 +25,7 @@ public class GuiChoice extends JFrame {
 		JLabel choiceLabel = new JLabel("Please select your role:");
 
 
-		fileDirectory = new JTextField(50);
+		fileDirectory = new JTextField(30); 
 
 		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);

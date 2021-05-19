@@ -2,6 +2,7 @@ package com.lads.view;
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +34,7 @@ public class DirectorGUI extends JFrame {
 		
 		JPanel mainPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
-		JPanel northPanel = new JPanel();
+		JPanel northPanel = new JPanel(new GridLayout(2,0));
 		JPanel subPanel = new JPanel();
 		JPanel subPanel2 = new JPanel();
 		
@@ -45,19 +46,21 @@ public class DirectorGUI extends JFrame {
 		quit = new JButton("Quit");
 		submit = new JButton("Submit");
 		clear = new JButton("Clear");
-		enterText = new JTextArea("(module_name|lab_name|numberStaffRequired|TrainingRequired)  e.g.\nModule1|SQLLab101|2|[SQL]\nModule2|JavaLab202|1|[java,python]",25, 30);
+		enterText = new JTextArea(25, 30);
 		enterText.setLineWrap(true);
 		JScrollPane scroll = new JScrollPane(enterText);
 //		importFile = new JButton("Import");
 		add = new JButton("Add");
 		
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
+		JLabel instruction2 = new JLabel("(module_name|lab_name|numberStaffRequired|TrainingRequired) e.g.");
 		JLabel teacherAdd = new JLabel("Add a Teacher:");
 		JLabel subjectAdd = new JLabel("Add a class:");
 		fileDirectory = new JTextField("[Please enter the file's directory here]");
 //		fileDirectory = new JTextField(FileIO.moduleFilePath);
 
 		instruction.setHorizontalAlignment(JLabel.CENTER);
+		instruction2.setHorizontalAlignment(JLabel.CENTER);
 		teacherAdd.setHorizontalAlignment(JLabel.CENTER);
 		subjectAdd.setHorizontalAlignment(JLabel.CENTER);
 			
@@ -72,6 +75,7 @@ public class DirectorGUI extends JFrame {
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
+		northPanel.add(instruction2);
 		
 		subPanel.add(fileDirectory);
 		subPanel.add(add);
