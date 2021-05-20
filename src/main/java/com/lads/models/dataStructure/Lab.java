@@ -34,7 +34,7 @@ public class Lab extends BasicData {
         }
     }
 
-    public boolean isExistTeacher(){
+    public boolean isAlreadyHaveTeacher(){
         if (this.teachers.size() <= 0){
             return false;
         }

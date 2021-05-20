@@ -5,7 +5,7 @@ import com.lads.models.dataStructure.BasicData;
 import java.util.ArrayList;
 
 //Use iterator to hide the actual aggregate data
-public class Aggregate<T extends BasicData>  { //*** how does this generic extends work
+public class Aggregate<T extends BasicData>  {
     protected ArrayList<T> array = new ArrayList<>();
 
     public void add(T obj) {

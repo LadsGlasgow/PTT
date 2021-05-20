@@ -15,6 +15,4 @@ public class SingletonLoM {
         return instance;
     }
 
-
-
 }

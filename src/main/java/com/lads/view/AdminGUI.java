@@ -115,7 +115,7 @@ public class AdminGUI extends JFrame {
 		this.add(new JLabel("                     "), BorderLayout.EAST);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
-		handler.populateTeacherText();
+		handler.populateText();
 		
 		
 	}

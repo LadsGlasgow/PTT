@@ -1,7 +1,6 @@
 package com.lads.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import com.lads.models.connection.FileIO;
 import com.lads.models.dataStructure.*;
@@ -34,14 +33,15 @@ public class ActionEventAdmin implements ActionListener{
 
 	}
 
-	public void populateTeacherText() {
-		Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
+	public void populateText() {
+		//Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
+		Aggregate<Lab> labAggregate = SingletonLoL.getInstance(); //***Create an aggregate of all of the different labs in the labs.txt file
 
 		String s = "";
 		for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
 			Lab lab = iterator.next();
 			//If the lab has no teacher...
-			if (!lab.isExistTeacher()){
+			if (!lab.isAlreadyHaveTeacher()){
 				s +=
 						"Lab Name:" + lab.getName()
 								+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
@@ -52,7 +52,8 @@ public class ActionEventAdmin implements ActionListener{
 		}
 		frame.getClassText().setText(s); //***ClassText will display all labs without a teacher.
 
-		Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
+		//Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
+		Aggregate<Teacher> teacherAggregate = SingletonLoT.getInstance();
 		refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea
 	}
 	@Override
