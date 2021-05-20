@@ -4,7 +4,12 @@ import com.lads.models.Date;
 import com.lads.models.connection.FileIO;
 import com.lads.models.dataStructure.Lab;
 import com.lads.models.dataStructure.Module;
+import com.lads.models.dataStructure.SingletonLoL;
 import com.lads.models.dataStructure.Teacher;
+import com.lads.models.factories.DataFactory;
+import com.lads.models.factories.FactoryProducer;
+import com.lads.models.factories.ModuleFactory;
+import com.lads.models.factories.TeacherFactory;
 import com.lads.models.iterator.Aggregate;
 import org.junit.jupiter.api.Test;
 
@@ -79,6 +84,9 @@ public class FileIOTest {
         Aggregate<Module> moduleAggregateReadTest = fileIO.fetchData("module");
         assertEquals(moduleAggregateReadTest.findByName("Module1").toString(),"Module1|[Simon]|[python101,java202]\n");
         assertEquals(moduleAggregateReadTest.findByName("Module2").toString(),"Module2|[Max]|[python101]\n");
+
+        DataFactory teacherFactory = FactoryProducer.getFactory("teacher");
+        teacherFactory.createObject("ssasddasdsa");
 
 
     }

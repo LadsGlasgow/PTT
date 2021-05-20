@@ -24,6 +24,7 @@ public class Aggregate<T extends BasicData>  {
         } return null;
     }
 
+
     public Iterator<T> getIterator() {
         return new ConcreteIterator();
     }

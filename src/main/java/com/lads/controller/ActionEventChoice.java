@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import com.lads.models.connection.FileIO;
+import com.lads.models.dataStructure.SingletonLoL;
 import com.lads.view.AdminGUI;
 import com.lads.view.DirectorGUI;
 import com.lads.view.GuiChoice;

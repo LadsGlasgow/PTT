@@ -4,8 +4,7 @@ import com.lads.models.dataStructure.Module;
 import com.lads.models.dataStructure.SingletonLoL;
 import com.lads.models.dataStructure.SingletonLoT;
 
-public class ModuleFactory extends DataAbstractFactory{
-
+public class ModuleFactory implements DataFactory<Module> {
 
     //Factory method for Module
     //0:Module Name,1:teachers, 2:labs

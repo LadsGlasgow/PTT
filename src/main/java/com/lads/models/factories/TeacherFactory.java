@@ -3,7 +3,7 @@ package com.lads.models.factories;
 import com.lads.models.Date;
 import com.lads.models.dataStructure.Teacher;
 
-public class TeacherFactory extends DataAbstractFactory<Teacher> {
+public class TeacherFactory implements DataFactory<Teacher> {
 
     //Factory method for teacher
     //0:name, 1~3 dob,4: trainings_due, 5:trainings_taken, 6:skills

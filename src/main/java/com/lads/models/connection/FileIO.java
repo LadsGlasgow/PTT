@@ -1,7 +1,7 @@
 package com.lads.models.connection;
 
 import com.lads.models.dataStructure.BasicData;
-import com.lads.models.factories.DataAbstractFactory;
+import com.lads.models.factories.DataFactory;
 import com.lads.models.factories.FactoryProducer;
 import com.lads.models.iterator.Aggregate;
 import com.lads.models.iterator.Iterator;
@@ -15,11 +15,6 @@ public class FileIO<T extends BasicData> implements DataHandling<T> {
 	
 	//path to come from admin & director GUI (textbox)
     private String directory;
-
-//    //global attribute of path.
-//    public static String teacherFilePath = "C:\\Users\\flyingjack\\OneDrive\\UofGlasgow Files\\COMPSCI5059 Software Engineering M\\PTT\\src\\main\\java\\com\\lads\\data\\teacher.txt";
-//    public static String moduleFilePath = "C:\\Users\\flyingjack\\OneDrive\\UofGlasgow Files\\COMPSCI5059 Software Engineering M\\PTT\\src\\main\\java\\com\\lads\\data\\teacher.txt";
-
 
     //implementation of Singleton design, so the directory can be shared between classes.
     private static FileIO instance = new FileIO();
@@ -46,7 +41,7 @@ public class FileIO<T extends BasicData> implements DataHandling<T> {
         Aggregate<T> result = new Aggregate<T>();
 
         //get suitable factory with giving class name.
-        DataAbstractFactory<T> factory = FactoryProducer.getFactory(className.toLowerCase().trim());
+        DataFactory<T> factory = FactoryProducer.getFactory(className.toLowerCase().trim());
 
         try {
             fr = new FileReader(path);

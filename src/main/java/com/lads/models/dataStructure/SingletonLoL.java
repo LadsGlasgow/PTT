@@ -15,3 +15,4 @@ public class SingletonLoL {
         return instance;
     }
 }
+

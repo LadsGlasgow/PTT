@@ -6,7 +6,7 @@ package com.lads.models.factories;
  *
  */
 public class FactoryProducer {
-    public static DataAbstractFactory getFactory(String factoryName){
+    public static DataFactory getFactory(String factoryName){
         if (factoryName.equalsIgnoreCase("teacher")){
             return new TeacherFactory();
         }
@@ -18,4 +18,5 @@ public class FactoryProducer {
         }
         return null;
     }
+
 }

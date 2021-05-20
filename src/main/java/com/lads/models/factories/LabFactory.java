@@ -3,8 +3,8 @@ package com.lads.models.factories;
 import com.lads.models.dataStructure.Lab;
 import com.lads.models.dataStructure.SingletonLoT;
 
-public class LabFactory extends DataAbstractFactory<Lab> {
-    //Factory method for teacher
+public class LabFactory implements DataFactory<Lab> {
+    //Factory method for lab
     //0:lab_name,1:numberOfStaffRequired,2: [trainingRequired], 3:[teachers_name]
     //e.g.: python101 | 2 | [ training101,training102 ] | [Simon,Max]
     @Override
