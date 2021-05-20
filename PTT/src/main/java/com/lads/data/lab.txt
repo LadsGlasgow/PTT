@@ -1,0 +1,4 @@
+python101|2|[training101, training102]|[Simon,Max]
+java202|2|[training302]|[Max]
+python102|2|[training101, training102]|[]
+java302|2|[training302]|[]
