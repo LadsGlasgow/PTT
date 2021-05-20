@@ -16,7 +16,7 @@ public class AdminGUI extends JFrame {
 	private JButton allocateLabButton;
 	private JPanel teacherDisplay;
 	private JTextField search;
-	private JButton importFileButton;
+	private JButton addTraining;
 	private JPanel classPanel;
 	private JButton searchButton;
 	private JTextField teacherSelected;
@@ -39,7 +39,7 @@ public class AdminGUI extends JFrame {
 		JPanel mainPanel = new JPanel(gLayout);
 		classPanel = new JPanel(new BorderLayout());
 
-
+		
 		JPanel teacherPanel = new JPanel(new BorderLayout());
 		JPanel teacherTextBox = new JPanel(new BorderLayout());
 		JPanel searchBar = new JPanel();
@@ -47,10 +47,10 @@ public class AdminGUI extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		JPanel directoryPanel = new JPanel();
 		quit = new JButton("Quit");
-		allocateLabButton = new JButton("Submit");
-		importFileButton = new JButton("Get File");
+		allocateLabButton = new JButton("Add teacher to Lab");
+		addTraining = new JButton("Add Training");
 		submit = new JButton("Submit Training");
-		teacherSelected = new JTextField("Select the teachers(lab_name|teacherName).e,g. 'ADS|Simon,Chris'");
+		teacherSelected = new JTextField("Select the teachers(Lab name|Teacher name).e,g. 'ADS|Simon,Chris'");
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
 		//instructions.setLineWrap(true);n
@@ -70,7 +70,7 @@ public class AdminGUI extends JFrame {
 
 
 		teacherDisplay = new JPanel(new BorderLayout());
-		fileDirectory = new JTextField("[Please enter the file's directory here]");
+		fileDirectory = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
 		teacherDisplay.add(scroll2);
 
 		//refresh with all teacher in file.
@@ -81,11 +81,11 @@ public class AdminGUI extends JFrame {
 		quit.addActionListener(handler);
 		allocateLabButton.addActionListener(handler);
 		searchButton.addActionListener(handler);
-		importFileButton.addActionListener(handler);
+		addTraining.addActionListener(handler);
 
 
 		directoryPanel.add(fileDirectory);
-		directoryPanel.add(importFileButton);
+		directoryPanel.add(addTraining);
 		searchBar.add(search);
 		searchBar.add(searchButton);
 		teacherPanel.add(searchBar, BorderLayout.NORTH);
@@ -109,15 +109,17 @@ public class AdminGUI extends JFrame {
 		buttonPanel.add(directoryPanel);
 		//northPanel.add(instructions);
 		//buttonPanel.add(clearBut);
-		buttonPanel.add(importFileButton);
+		//buttonPanel.add(addTraining);
 		buttonPanel.add(quit);
-
+		
 
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(northPanel, BorderLayout.NORTH);
 		this.add(new JLabel("                     "), BorderLayout.WEST);
 		this.add(new JLabel("                     "), BorderLayout.EAST);
 		this.add(buttonPanel, BorderLayout.SOUTH);
+		
+		handler.populateTeacherText();
 		
 		
 	}
@@ -141,8 +143,8 @@ public class AdminGUI extends JFrame {
 	public JTextField getSearch() {
 		return search;
 	}
-	public JButton getImportFileButton() {
-		return importFileButton;
+	public JButton getAddTraining() {
+		return addTraining;
 	}
 
 	public JTextField getFileDirectory() {

@@ -25,7 +25,7 @@ public class ActionEventAdmin implements ActionListener{
 			Teacher teacher = iterator.next();
 			s +=
 					"name:" + teacher.getName()
-							+ " date:" + teacher.getDob() +
+							+ " DOB:" + teacher.getDob() + // Changed to DOB
 							" Training Taken:" + teacher.getTrainings_taken() + "Skills:" + teacher.getSkills() +  "\n";
 		}
 
@@ -33,9 +33,29 @@ public class ActionEventAdmin implements ActionListener{
 
 	}
 
+	public void populateTeacherText() {
+		Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
+
+		String s = "";
+		for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
+			Lab lab = iterator.next();
+			//If the lab has no teacher...
+			if (!lab.hasTeacher()){
+				s +=
+						"Lab Name:" + lab.getName()
+								+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
+								+ "* Training Required"	+ lab.getTrainingRequired().toString() + "\n"
+				;
+			}
+
+		}
+		frame.getClassText().setText(s); //***ClassText will display all labs without a teacher.
+
+		Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
+		refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 
 		if(e.getSource() == frame.getQuit()) {
 			//save labs, module,teachers before leave.
@@ -46,14 +66,14 @@ public class ActionEventAdmin implements ActionListener{
 			System.exit(0);
 		}
 		//import from file.
-		if (e.getSource() == frame.getImportFileButton()){
-			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
-			Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab");
+		if (e.getSource() == frame.getAddTraining()){
+/*			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
+			Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
 
 			String s = "";
 			for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
 				Lab lab = iterator.next();
-				//if the lab has no teacher
+				//If the lab has no teacher...
 				if (!lab.hasTeacher()){
 					s +=
 							"Lab Name:" + lab.getName()
@@ -63,14 +83,23 @@ public class ActionEventAdmin implements ActionListener{
 				}
 
 			}
-			frame.getClassText().setText(s);
+			frame.getClassText().setText(s); //***ClassText will display all labs without a teacher.
 
 			Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
-			refreshSearchResult(teacherAggregate);
+			refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea */
+			
+			String line = frame.getAddTraining().getText();
+			String[] nameAndTraining = line.split("|");
+			if(SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()) != null) {
+				SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()).addTrainingDue(nameAndTraining[1].trim());;
+			}else {
+				JOptionPane.showMessageDialog(null,"Cannot find teacher. Please ensure this teacher's name is entered correctly.");
+			}
+		
 
 
 		}
-		//submit lab allocation
+		//submit lab allocation - Adding a teacher to a lab
 		if (e.getSource() == frame.getAllocateLabButton()){
 			//e.g. "DTALab101|Simon,Chris"
 			if (!frame.getTeacherSelected().getText().equals("")){
@@ -85,7 +114,7 @@ public class ActionEventAdmin implements ActionListener{
 
 				}
 				else {
-					JOptionPane.showMessageDialog(null,"Cannot find the lab please check.");
+					JOptionPane.showMessageDialog(null,"Cannot find the lab please check."); //***Will only allow us to add Teachers to pre-existing Labs.
 				}
 
 			}
@@ -97,7 +126,10 @@ public class ActionEventAdmin implements ActionListener{
 
 
 		}
-
+		//***Training Scheduler
+		
+		
+		
 
 		//search function
 		if (e.getSource() == frame.getSearchButton()){

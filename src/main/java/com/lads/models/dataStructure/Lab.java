@@ -41,16 +41,16 @@ public class Lab extends BasicData {
         return true;
     }
 
-    //the format should be "name|numberOfStaffRequired|[trainingRequired]|[teachers]"
-    //0:lab_name,1:numberOfStaffRequired,2: [trainingRequired], 3:[teachers_name]
-    //e.g.: python101 | 2 | [ training101,training102 ] | [Simon,Max]
+    //the format should be "name|numberOfStaffRequired|trainingRequired|teachers"
+    //0:lab_name,1:numberOfStaffRequired,2: trainingRequired, 3:teachers_name
+    //e.g.: python101 | 2 |  training101,training102  | Simon,Max
     @Override
     public String toString() {
 
         String result = name + "|" + numberOfStaffRequired + "|";
 
         //add training required
-        result += trainingRequired.toString() + "|[";
+        result += trainingRequired.toString() + "|";
 
         for (int i = 0; i < this.teachers.size(); i++) {
             result += this.teachers.get(i).getName() ;
@@ -59,7 +59,7 @@ public class Lab extends BasicData {
             }
         }
 
-        return   result + "]\n";
+        return   result + "\n";
 
 
     }

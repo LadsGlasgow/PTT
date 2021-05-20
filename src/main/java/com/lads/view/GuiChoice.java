@@ -39,8 +39,8 @@ public class GuiChoice extends JFrame {
 
 		this.add(new JLabel("Please input the file directory for data(end with \"\\\"(Windows) or \"/\"(Mac) )"));
 		this.add(fileDirectory);
-
 	}
+	
 	public static void main(String[] args) {
 		GuiChoice gui = new GuiChoice();
 		gui.setVisible(true);

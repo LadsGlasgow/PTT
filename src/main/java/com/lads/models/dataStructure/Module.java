@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 public class Module extends BasicData {
 	private String name;
-	private ArrayList<Teacher> teachers = new ArrayList<>(); //assume two teachers cannot have same name.
-
+	private ArrayList<Teacher> teachers = new ArrayList<>(); 
 	private ArrayList<Lab> labs = new ArrayList<>();
-
 
 	public Module(String name) {
 		this.name = name;
@@ -19,9 +17,9 @@ public class Module extends BasicData {
 
 	//Factory method for Module
 	//0:Module Name,1:teachers, 2:labs
-	//e.g.: Module1 | [Simon,max] | [pythonLab101,JavaLab102]
+	//e.g.: Module1 | Simon,max | pythonLab101,JavaLab102
 	public String toString() {
-		String result =  this.name + "|[";
+		String result =  this.name + "|";
 
 		//add all teachers
 		for (int i = 0; i < this.teachers.size(); i++) {
@@ -31,7 +29,7 @@ public class Module extends BasicData {
 			}
 		}
 
-		result += "]|[";
+		result += "|";
 
 		//add all labs
 		for (int i = 0; i < this.labs.size(); i++) {
@@ -40,10 +38,8 @@ public class Module extends BasicData {
 				result += ",";
 			}
 		}
-
-		return result + "]\n";
+		return result + "\n";
 	}
-
 
 	public void addTeacher(Teacher ...teachers){
 		for (int i = 0; i < teachers.length; i++) {
