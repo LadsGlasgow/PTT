@@ -1,4 +1,3 @@
-python101|2|[training101, training102]|[Simon,Max]
-java202|2|[training302]|[Max]
-python102|2|[training101, training102]|[]
-java302|2|[training302]|[]
+python101|2|[python_training]|[]
+java202|2|[java_training]|[]
+java808|2|[java_training]|[]

@@ -1,6 +1,7 @@
 package com.lads.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import com.lads.models.connection.FileIO;
 import com.lads.models.dataStructure.*;
@@ -40,7 +41,7 @@ public class ActionEventAdmin implements ActionListener{
 		for (Iterator<Lab> iterator = labAggregate.getIterator();iterator.hasNext(); ){
 			Lab lab = iterator.next();
 			//If the lab has no teacher...
-			if (!lab.hasTeacher()){
+			if (!lab.isExistTeacher()){
 				s +=
 						"Lab Name:" + lab.getName()
 								+ " * Number Staff Required:" + lab.getNumberOfStaffRequired()
@@ -88,28 +89,48 @@ public class ActionEventAdmin implements ActionListener{
 			Aggregate<Teacher> teacherAggregate = FileIO.getInstance().fetchData("teacher");
 			refreshSearchResult(teacherAggregate); //***Adds the teachers to the TeacherTextArea */
 			
-			String line = frame.getAddTraining().getText();
-			String[] nameAndTraining = line.split("|");
+			String line = frame.getTrainingAllocation().getText();
+			String[] nameAndTraining = line.split("\\|");
 			if(SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()) != null) {
-				SingletonLoT.getInstance().findByName(nameAndTraining[0].trim()).addTrainingDue(nameAndTraining[1].trim());;
+				Teacher teacher = SingletonLoT.getInstance().findByName(nameAndTraining[0].trim());
+				//add training only neeeds
+				if (!teacher.hasTakenTraining(nameAndTraining[1].trim())){
+					teacher.addTrainingTaken(nameAndTraining[1].trim());
+					//store to file
+					FileIO.getInstance().storeData("teacher",SingletonLoT.getInstance());
+					JOptionPane.showMessageDialog(null,"Done");
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"Already taken");
+				}
+
 			}else {
+
 				JOptionPane.showMessageDialog(null,"Cannot find teacher. Please ensure this teacher's name is entered correctly.");
 			}
-		
+
 
 
 		}
 		//submit lab allocation - Adding a teacher to a lab
 		if (e.getSource() == frame.getAllocateLabButton()){
-			//e.g. "DTALab101|Simon,Chris"
+			//e.g. "Simon|DTALab101"
 			if (!frame.getTeacherSelected().getText().equals("")){
 				String[] teachersSelected = frame.getTeacherSelected().getText().split("\\|");
 
-				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[0].trim());//find the lab first
+				Lab lab = SingletonLoL.getInstance().findByName(teachersSelected[1].trim());//find the lab first
 				if (lab!=null){
-					for (String teacher_name:teachersSelected[1].trim().split(",")){
-						lab.addTeacher(SingletonLoT.getInstance().findByName(teacher_name));
+
+					Teacher teacher = SingletonLoT.getInstance().findByName(teachersSelected[0].trim());
+					//if lab do not contains the teacher and the teacher already takes all the trainings required.
+					if ((!lab.haveTeacher(teacher.getName())) && lab.isTeacherHasQualification(teacher) ){
+						lab.addTeacher(teacher);
 					}
+					else{
+						JOptionPane.showMessageDialog(null,"The lab already have" + teacher.getName() + " " +
+								"\nor the teacher has not taken trainings for this lab.");
+					}
+
 					JOptionPane.showMessageDialog(null,"Done");
 
 				}

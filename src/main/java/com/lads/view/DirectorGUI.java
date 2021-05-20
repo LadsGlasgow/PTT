@@ -21,21 +21,21 @@ public class DirectorGUI extends JFrame {
 	private JButton clear;
 	private JTextArea enterText;
 	private JButton add;
-	private JTextField fileDirectory;
+//	private JTextField fileDirectory;
 
 
 	public DirectorGUI() {
 		//Details of the JFrame itself.
-		this.setSize(700, 500);
+		this.setSize(700, 800);
 		this.setTitle("Director - Add teaching requirements");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
-		this.setLocation(300, 200);
+		this.setLocation(100, 200);
 		
 		//Instantiating the panels that will be required to achieve the desired layout.
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JPanel buttonPanel = new JPanel();
-		JPanel northPanel = new JPanel(new GridLayout(3,0));
+		JPanel northPanel = new JPanel(new GridLayout(4,0));
 		JPanel subPanel = new JPanel(new FlowLayout());
 		
 		//Instantiating the instance variables - Components of the GUI that will be required by other classes.
@@ -45,7 +45,7 @@ public class DirectorGUI extends JFrame {
 		enterText = new JTextArea("",25, 30);
 		enterText.setLineWrap(true);
 		add = new JButton("Add");
-		fileDirectory = new JTextField("[Please enter the file's directory here]");
+//		fileDirectory = new JTextField("[Please enter the file's directory here]");
 		
 		//Adding a scrollbar to the JTextArea in order to ensure a large file can be read and displayed.
 		JScrollPane scroll = new JScrollPane(enterText);
@@ -71,6 +71,9 @@ public class DirectorGUI extends JFrame {
 		add.addActionListener(handler);
 
 		//Adding the components to the JPanels
+//		buttonPanel.add(new JLabel("Please input the file directory for data"));
+//
+//		buttonPanel.add(fileDirectory);
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
@@ -91,6 +94,7 @@ public class DirectorGUI extends JFrame {
 		//The below two lines add blank JLabels in order to add a border, preventing the JTextAreas from extending all the way to the sides of the interface.
 		this.add(new JLabel("                     "), BorderLayout.WEST);
 		this.add(new JLabel("                     "), BorderLayout.EAST);
+
 
 	}
 	//To be deleted, here right now for convenience:
@@ -115,7 +119,7 @@ public class DirectorGUI extends JFrame {
 		return add;
 	}
 
-	public JTextField getFileDirectory() {
-		return fileDirectory;
-	}
+//	public JTextField getFileDirectory() {
+//		return fileDirectory;
+//	}
 }

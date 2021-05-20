@@ -6,10 +6,6 @@ import javax.swing.*;
 //import ActionEventAdmin;
 import com.lads.controller.*;
 
-import com.lads.models.dataStructure.Teacher;
-import com.lads.models.iterator.Aggregate;
-import com.lads.models.iterator.Iterator;
-
 public class AdminGUI extends JFrame {
 	private JButton quit;
 	private JButton submit;
@@ -21,7 +17,7 @@ public class AdminGUI extends JFrame {
 	private JButton searchButton;
 	private JTextField teacherSelected;
 	private JTextArea teacherText;
-	private JTextField fileDirectory;
+	private JTextField trainingAllocation;
 	private JTextArea classText;
 
 	public AdminGUI() {
@@ -50,7 +46,7 @@ public class AdminGUI extends JFrame {
 		allocateLabButton = new JButton("Add teacher to Lab");
 		addTraining = new JButton("Add Training");
 		submit = new JButton("Submit Training");
-		teacherSelected = new JTextField("Select the teachers(Lab name|Teacher name).e,g. 'ADS|Simon,Chris'");
+		teacherSelected = new JTextField("Select the teachers(Teacher name|Lab name).e,g. 'Simon|python101'");
 		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
 		//instructions.setHorizontalAlignment(JLabel.CENTER);
 		//instructions.setLineWrap(true);n
@@ -70,7 +66,7 @@ public class AdminGUI extends JFrame {
 
 
 		teacherDisplay = new JPanel(new BorderLayout());
-		fileDirectory = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
+		trainingAllocation = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
 		teacherDisplay.add(scroll2);
 
 		//refresh with all teacher in file.
@@ -84,7 +80,7 @@ public class AdminGUI extends JFrame {
 		addTraining.addActionListener(handler);
 
 
-		directoryPanel.add(fileDirectory);
+		directoryPanel.add(trainingAllocation);
 		directoryPanel.add(addTraining);
 		searchBar.add(search);
 		searchBar.add(searchButton);
@@ -147,8 +143,8 @@ public class AdminGUI extends JFrame {
 		return addTraining;
 	}
 
-	public JTextField getFileDirectory() {
-		return fileDirectory;
+	public JTextField getTrainingAllocation() {
+		return trainingAllocation;
 	}
 
 	public JPanel getClassPanel() {

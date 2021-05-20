@@ -34,12 +34,42 @@ public class Lab extends BasicData {
         }
     }
 
-    public boolean hasTeacher(){
+    public boolean isExistTeacher(){
         if (this.teachers.size() <= 0){
             return false;
         }
         return true;
     }
+
+    public boolean haveTeacher(String teacherName){
+        Boolean result = false;
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teacherName.equals(this.teachers.get(i))){
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public boolean isTeacherHasQualification(Teacher teacher){
+        boolean result = false;
+
+        for (int i = 0; i < this.trainingRequired.size(); i++) {
+            result = false;
+            for (int j = 0; j < teacher.getTrainings_taken().size(); j++) {
+                //if the teacher already taken the training.
+                if (teacher.getTrainings_taken().get(j).equals(this.trainingRequired.get(i))){
+                    result = true;
+                }
+            }
+            //if any training is not taken.
+            if (result == false) { break; }
+        }
+
+        return result;
+    }
+
 
     //the format should be "name|numberOfStaffRequired|trainingRequired|teachers"
     //0:lab_name,1:numberOfStaffRequired,2: trainingRequired, 3:teachers_name
@@ -50,7 +80,7 @@ public class Lab extends BasicData {
         String result = name + "|" + numberOfStaffRequired + "|";
 
         //add training required
-        result += trainingRequired.toString() + "|";
+        result += trainingRequired.toString() + "|[";
 
         for (int i = 0; i < this.teachers.size(); i++) {
             result += this.teachers.get(i).getName() ;
@@ -59,8 +89,7 @@ public class Lab extends BasicData {
             }
         }
 
-        return   result + "\n";
-
+        return result  + "]"  + "\n";
 
     }
 

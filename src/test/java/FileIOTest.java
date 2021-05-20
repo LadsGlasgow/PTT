@@ -30,7 +30,7 @@ public class FileIOTest {
 
         Teacher teacherTest2 = new Teacher("Max",new Date(2020,5,14));
         teacherTest2.addTrainingTaken("training3");
-        teacherTest2.addTrainingDue("java");
+        teacherTest2.addTrainingDue("training2");
         teacherTest2.addSkills("business");
 
         Aggregate<Teacher> teacherAggregate = new Aggregate<>();
@@ -74,7 +74,7 @@ public class FileIOTest {
                     "Simon|2020|5|14|[training1]|[training1, training2]|[python, java]\n"
                 );
         assertEquals(teacherAggregateRead.findByName("Max").toString(),
-                "Max|2020|5|14|[java]|[training3]|[business]\n"
+                "Max|2020|5|14|[training2]|[training3]|[business]\n"
         );
 
         Aggregate<Lab> labAggregateReadTest = fileIO.fetchData("lab");
@@ -84,10 +84,6 @@ public class FileIOTest {
         Aggregate<Module> moduleAggregateReadTest = fileIO.fetchData("module");
         assertEquals(moduleAggregateReadTest.findByName("Module1").toString(),"Module1|[Simon]|[python101,java202]\n");
         assertEquals(moduleAggregateReadTest.findByName("Module2").toString(),"Module2|[Max]|[python101]\n");
-
-        DataFactory teacherFactory = FactoryProducer.getFactory("teacher");
-        teacherFactory.createObject("ssasddasdsa");
-
 
     }
 }

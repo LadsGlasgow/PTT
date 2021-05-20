@@ -33,11 +33,10 @@ public class ActionEventDirector implements ActionListener {
 			frame.getEnterText().setText("");
 		}
 
-		//when click submit or add
-		if (e.getSource() == frame.getSubmit() ||e.getSource() == frame.getAdd()){
+		//when click submit
+		if (e.getSource() == frame.getSubmit()){
 
-			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
-
+//			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 			Boolean isDone = true;
 
 			//the format should be:(ModuleName | LabName | numberStaffRequired|trainingRequired)
@@ -60,8 +59,8 @@ public class ActionEventDirector implements ActionListener {
 				else {
 					Lab lab = new Lab(parameters[1],Integer.parseInt(parameters[2]));
 
-					lab.addTrainingRequired(parameters[3].
-							substring(1,parameters[3].length() - 1).split(","));
+					lab.addTrainingRequired(parameters[3].trim());
+
 					//add lab to the existing module
 					module.addLabs(lab);
 					//add lab to the singleton list of labs
