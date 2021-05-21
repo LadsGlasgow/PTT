@@ -23,9 +23,7 @@ public class GuiChoice extends JFrame {
 		admin = new JButton("Administrator");
 		director = new JButton("Director");
 		JLabel choiceLabel = new JLabel("Please select your role:");
-
-
-		fileDirectory = new JTextField(50);
+		fileDirectory = new JTextField(30);
 
 		ActionEventChoice handler = new ActionEventChoice(this);
 		quit.addActionListener(handler);
@@ -37,13 +35,8 @@ public class GuiChoice extends JFrame {
 		this.add(director);
 		this.add(quit);
 
-		this.add(new JLabel("Please input the file directory for data(end with \"\\\"(Windows) or \"/\"(Mac) )"));
+		this.add(new JLabel("Please input the file directory for data(end with \"\\\"(Windows) or \"/\"(Mac))"));
 		this.add(fileDirectory);
-	}
-	
-	public static void main(String[] args) {
-		GuiChoice gui = new GuiChoice();
-		gui.setVisible(true);
 	}
 	public JButton getQuit() {
 		return quit;

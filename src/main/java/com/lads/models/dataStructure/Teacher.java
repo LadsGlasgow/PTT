@@ -4,7 +4,7 @@ import com.lads.models.Date;
 
 import java.util.ArrayList;
 
-public class Teacher extends BasicData {
+public class Teacher implements BasicData {
 
     private String name;
     private Date dob;
@@ -18,7 +18,6 @@ public class Teacher extends BasicData {
         this.dob = dob;
     }
 
-
     public void addTrainingDue(String ...trainings){
         for (String training:trainings){
             this.trainings_due.add(training.trim());
@@ -30,7 +29,6 @@ public class Teacher extends BasicData {
             this.skills.add(skill.trim());
         }
     }
-
 
     public void addTrainingTaken(String ...trainings){
         for (String training:trainings){
@@ -56,7 +54,6 @@ public class Teacher extends BasicData {
     public ArrayList<String> getTrainings_taken() {
         return trainings_taken;
     }
-
 
 	public boolean hasTakenTraining(String training){
         for (int i = 0; i < trainings_taken.size(); i++) {

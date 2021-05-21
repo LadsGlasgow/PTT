@@ -24,12 +24,10 @@ public class Aggregate<T extends BasicData>  {
         } return null;
     }
 
-
     public Iterator<T> getIterator() {
         return new ConcreteIterator();
     }
 
-    //*** what is a concrete iterator
     private class ConcreteIterator implements Iterator<T>{
         int index;
 

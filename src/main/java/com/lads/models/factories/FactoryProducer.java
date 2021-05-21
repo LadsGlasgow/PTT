@@ -2,7 +2,7 @@ package com.lads.models.factories;
 
 /**
  *
- * A producers class to generate factory with static method.
+ * A producer class for generating factories with static methods.
  *
  */
 public class FactoryProducer {

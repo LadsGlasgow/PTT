@@ -2,7 +2,7 @@ package com.lads.models.dataStructure;
 
 import java.util.ArrayList;
 
-public class Lab extends BasicData {
+public class Lab implements BasicData {
     private String name;
     private int numberOfStaffRequired;
     private ArrayList<String> trainingRequired = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Lab extends BasicData {
     }
 
     public boolean isAlreadyHaveTeacher(){
-        if (this.teachers.size() <= 0){
+        if (this.teachers.size() < this.numberOfStaffRequired){
             return false;
         }
         return true;
@@ -66,14 +66,13 @@ public class Lab extends BasicData {
             //if any training is not taken.
             if (result == false) { break; }
         }
-
         return result;
     }
-
 
     //the format should be "name|numberOfStaffRequired|trainingRequired|teachers"
     //0:lab_name,1:numberOfStaffRequired,2: trainingRequired, 3:teachers_name
     //e.g.: python101 | 2 |  training101,training102  | Simon,Max
+    
     @Override
     public String toString() {
 
@@ -88,9 +87,7 @@ public class Lab extends BasicData {
                 result += ",";
             }
         }
-
         return result  + "]"  + "\n";
-
     }
 
     public int getNumberOfStaffRequired() {

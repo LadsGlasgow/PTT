@@ -21,8 +21,6 @@ public class DirectorGUI extends JFrame {
 	private JButton clear;
 	private JTextArea enterText;
 	private JButton add;
-//	private JTextField fileDirectory;
-
 
 	public DirectorGUI() {
 		//Details of the JFrame itself.
@@ -45,10 +43,10 @@ public class DirectorGUI extends JFrame {
 		enterText = new JTextArea("",25, 30);
 		enterText.setLineWrap(true);
 		add = new JButton("Add");
-//		fileDirectory = new JTextField("[Please enter the file's directory here]");
 		
 		//Adding a scrollbar to the JTextArea in order to ensure a large file can be read and displayed.
 		JScrollPane scroll = new JScrollPane(enterText);
+		
 		//Instruction JLabels
 		JLabel instruction = new JLabel("Add teaching requirements below and click submit when finished");
 		JLabel instruction2 = new JLabel("Module name|Lab name|number of staff required|Training required");
@@ -71,18 +69,12 @@ public class DirectorGUI extends JFrame {
 		add.addActionListener(handler);
 
 		//Adding the components to the JPanels
-//		buttonPanel.add(new JLabel("Please input the file directory for data"));
-//
-//		buttonPanel.add(fileDirectory);
 		buttonPanel.add(submit);
 		buttonPanel.add(clear);
 		buttonPanel.add(getQuit());
 		northPanel.add(instruction);
 		northPanel.add(instruction2);
 		northPanel.add(instruction3);
-		
-		//subPanel.add(fileDirectory);
-		//subPanel.add(add);
 		
 		mainPanel.add(scroll, BorderLayout.CENTER);
 		mainPanel.add(subPanel, BorderLayout.SOUTH);
@@ -91,17 +83,12 @@ public class DirectorGUI extends JFrame {
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.add(northPanel, BorderLayout.NORTH);
+		
 		//The below two lines add blank JLabels in order to add a border, preventing the JTextAreas from extending all the way to the sides of the interface.
 		this.add(new JLabel("                     "), BorderLayout.WEST);
 		this.add(new JLabel("                     "), BorderLayout.EAST);
-
-
 	}
-	//To be deleted, here right now for convenience:
-	public static void main(String[] args) {
-		DirectorGUI gui = new DirectorGUI();
-		gui.setVisible(true);
-	}
+	
 	public JButton getQuit() {
 		return quit;
 	}
@@ -118,8 +105,4 @@ public class DirectorGUI extends JFrame {
 	public JButton getAdd() {
 		return add;
 	}
-
-//	public JTextField getFileDirectory() {
-//		return fileDirectory;
-//	}
 }

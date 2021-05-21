@@ -42,36 +42,27 @@ public class AdminGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JPanel directoryPanel = new JPanel();
-		quit = new JButton("Quit");
-		allocateLabButton = new JButton("Add teacher to Lab");
-		addTraining = new JButton("Add Training");
-		submit = new JButton("Submit Training");
-		teacherSelected = new JTextField("Select the teachers(Teacher name|Lab name).e,g. 'Simon|python101'");
-		//JTextArea instructions = new JTextArea("Classes that require a teacher, and their teaching requirements, will appear on the left. On the right, please enter the skill you are looking for to locate teachers with that skill");
-		//instructions.setHorizontalAlignment(JLabel.CENTER);
-		//instructions.setLineWrap(true);n
 		JLabel subjectInst = new JLabel("Labs without Teachers:");
 		JLabel teacherInst = new JLabel("Enter skill to find suitable teachers:");
+		quit = new JButton("Quit");
+		allocateLabButton = new JButton("Add teacher to Lab");
+		addTraining = new JButton("Schedule Training");
+		submit = new JButton("Add Training");
+		teacherSelected = new JTextField("Select the teachers(Teacher name|Lab name).e,g. 'Simon|python101'");
+
 		
-//		JTextArea classRequirements = new JTextArea(10, 10);
-
-
 		search = new JTextField("[Enter skill to search...]");
 		searchButton = new JButton("Search");
 		classText = new JTextArea(40, 40);
 		teacherText = new JTextArea(40, 40);
 		JScrollPane scroll = new JScrollPane(classText);
-		//JScrollPane scroll2 = new JScrollPane(teacherText);
 		JScrollPane scroll2 = new JScrollPane(teacherText);
 
 
 		teacherDisplay = new JPanel(new BorderLayout());
 		trainingAllocation = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
 		teacherDisplay.add(scroll2);
-
-		//refresh with all teacher in file.
-//		refreshSearchResult(SingletonLoT.getInstance());
-		//teacherDisplay.add(scroll2);
+		
 
 		ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
@@ -88,24 +79,16 @@ public class AdminGUI extends JFrame {
 		teacherTextBox.add(teacherDisplay, BorderLayout.CENTER);
 		teacherTextBox.add(teacherInst, BorderLayout.NORTH);
 		teacherTextBox.add(teacherSelected,BorderLayout.SOUTH);
-
 		teacherPanel.add(teacherTextBox, BorderLayout.CENTER);
 		teacherPanel.add(allocateLabButton, BorderLayout.SOUTH);
-//		classPanel.add(classRequirements, BorderLayout.CENTER);
+		
 		classPanel.add(subjectInst, BorderLayout.NORTH);
-		//classPanel.add(classText);
-
-
 		classPanel.add(scroll);
 
 
-//		classPanel.add(fileDirectory, BorderLayout.SOUTH);
 		mainPanel.add(classPanel);
 		mainPanel.add(teacherPanel);
 		buttonPanel.add(directoryPanel);
-		//northPanel.add(instructions);
-		//buttonPanel.add(clearBut);
-		//buttonPanel.add(addTraining);
 		buttonPanel.add(quit);
 		
 
@@ -116,14 +99,8 @@ public class AdminGUI extends JFrame {
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
 		handler.populateText();
-		
-		
 	}
-	//To be deleted, here rn for convenience
-	public static void main(String[] args) {
-		AdminGUI gui = new AdminGUI();
-		gui.setVisible(true);
-	}
+	
 	public JButton getQuit() {
 		return quit;
 	}

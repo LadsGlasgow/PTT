@@ -9,6 +9,7 @@ public class ModuleFactory implements DataFactory<Module> {
     //Factory method for Module
     //0:Module Name,1:teachers, 2:labs
     //e.g.: Module1 | [Simon,max] | [pythonLab101,JavaLab102]
+	
     @Override
     public Module createObject(String parameterLine) {
         String[] parameters = parameterLine.split("\\|");
@@ -31,8 +32,6 @@ public class ModuleFactory implements DataFactory<Module> {
             //use SingletonLoT to get relating teacher in the list of teacher.
             module.addLabs(SingletonLoL.getInstance().findByName(labs[i]));
         }
-
         return module;
     }
-
 }

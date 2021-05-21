@@ -53,19 +53,15 @@ public class FileIO<T extends BasicData> implements DataHandling<T> {
                 if (!line.equals("")){
                     result.add(
                             //create object with factory
-                            factory.createObject(line)
-                    );
+                            factory.createObject(line));
                 }
             }
             fr.close();
-
         }
         catch (IOException e){
             e.printStackTrace();
         }
-
         return result;
-
     }
 
 
@@ -91,6 +87,5 @@ public class FileIO<T extends BasicData> implements DataHandling<T> {
         catch (IOException e){
             e.printStackTrace();
         }
-
     }
 }

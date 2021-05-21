@@ -2,7 +2,7 @@ package com.lads.models.dataStructure;
 
 import java.util.ArrayList;
 
-public class Module extends BasicData {
+public class Module implements BasicData {
 	private String name;
 	private ArrayList<Teacher> teachers = new ArrayList<>(); 
 	private ArrayList<Lab> labs = new ArrayList<>();
@@ -18,6 +18,7 @@ public class Module extends BasicData {
 	//Factory method for Module
 	//0:Module Name,1:teachers, 2:labs
 	//e.g.: Module1 | Simon,max | pythonLab101,JavaLab102
+	
 	public String toString() {
 		String result =  this.name + "|[";
 

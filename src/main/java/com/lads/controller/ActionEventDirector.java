@@ -36,7 +36,6 @@ public class ActionEventDirector implements ActionListener {
 		//when click submit
 		if (e.getSource() == frame.getSubmit()){
 
-//			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 			Boolean isDone = true;
 
 			//the format should be:(ModuleName | LabName | numberStaffRequired|trainingRequired)
@@ -47,7 +46,6 @@ public class ActionEventDirector implements ActionListener {
 			for (String line:textLine){
 				//use "|" to split the parameter
 				String[] parameters = line.split("\\|");
-
 				//find the module firstly
 				Module module = SingletonLoM.getInstance().findByName(parameters[0].trim());
 				//if the module does not exist
@@ -58,26 +56,19 @@ public class ActionEventDirector implements ActionListener {
 				}
 				else {
 					Lab lab = new Lab(parameters[1],Integer.parseInt(parameters[2]));
-
 					lab.addTrainingRequired(parameters[3].trim());
-
 					//add lab to the existing module
 					module.addLabs(lab);
 					//add lab to the singleton list of labs
 					SingletonLoL.getInstance().add(lab);
 				}
-
 			}
-
 			if (isDone){
 				//save labs and module when it is done.
 				FileIO.getInstance().storeData("module",SingletonLoM.getInstance());
 				FileIO.getInstance().storeData("lab",SingletonLoL.getInstance());
 				JOptionPane.showMessageDialog(null,"Done");
-
 			}
 		}
-
 	}
-	
 }
