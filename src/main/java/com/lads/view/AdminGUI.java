@@ -8,7 +8,6 @@ import com.lads.controller.*;
 
 public class AdminGUI extends JFrame {
 	private JButton quit;
-	private JButton submit;
 	private JButton allocateLabButton;
 	private JPanel teacherDisplay;
 	private JTextField search;
@@ -21,21 +20,19 @@ public class AdminGUI extends JFrame {
 	private JTextArea classText;
 
 	public AdminGUI() {
-
+		//Details of the JFrame itself.
 		this.setSize(1300, 500);
 		this.setTitle("Administrator - Locate Teachers with Required Skills");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.setLocation(300, 200);
 		
+		//Creating a new GridLayout object in order to set a gap between the components
 		GridLayout gLayout = new GridLayout(0, 2);
 		gLayout.setHgap(10);
 		
-		JPanel textBoxPanel = new JPanel(gLayout);
+		//Instantiating the panels that will be required to achieve the desired layout.	
 		JPanel mainPanel = new JPanel(gLayout);
-		classPanel = new JPanel(new BorderLayout());
-
-		
 		JPanel teacherPanel = new JPanel(new BorderLayout());
 		JPanel teacherTextBox = new JPanel(new BorderLayout());
 		JPanel searchBar = new JPanel();
@@ -44,33 +41,35 @@ public class AdminGUI extends JFrame {
 		JPanel directoryPanel = new JPanel();
 		JLabel subjectInst = new JLabel("Labs without Teachers:");
 		JLabel teacherInst = new JLabel("Enter skill to find suitable teachers:");
+		classPanel = new JPanel(new BorderLayout());
+		
+		//Instantiating the instance variables - Components of the GUI that will be required by other classes (as well as classPanel above)
 		quit = new JButton("Quit");
 		allocateLabButton = new JButton("Add teacher to Lab");
-		addTraining = new JButton("Schedule Training");
-		submit = new JButton("Add Training");
+		addTraining = new JButton("Add Training");
 		teacherSelected = new JTextField("Select the teachers(Teacher name|Lab name).e,g. 'Simon|python101'");
-
-		
 		search = new JTextField("[Enter skill to search...]");
 		searchButton = new JButton("Search");
 		classText = new JTextArea(40, 40);
 		teacherText = new JTextArea(40, 40);
-		JScrollPane scroll = new JScrollPane(classText);
-		JScrollPane scroll2 = new JScrollPane(teacherText);
-
-
 		teacherDisplay = new JPanel(new BorderLayout());
 		trainingAllocation = new JTextField("To add training for a teacher, enter \"Teacher name|Training required \"");
-		teacherDisplay.add(scroll2);
 		
+		//Creating JScrollPane objects in order to allow scrolling in the JTextAreas and adding them.
+		JScrollPane scroll = new JScrollPane(classText);
+		JScrollPane scroll2 = new JScrollPane(teacherText);
+		classPanel.add(scroll);
+		teacherDisplay.add(scroll2);		
 
+		//Creating an object of type ActionEventAdmin in order to add action listeners to the appropriate components.
 		ActionEventAdmin handler = new ActionEventAdmin(this);
 		quit.addActionListener(handler);
 		allocateLabButton.addActionListener(handler);
 		searchButton.addActionListener(handler);
 		addTraining.addActionListener(handler);
-
-
+		
+		//Adding the components to the JPanels
+		classPanel.add(subjectInst, BorderLayout.NORTH);
 		directoryPanel.add(trainingAllocation);
 		directoryPanel.add(addTraining);
 		searchBar.add(search);
@@ -81,31 +80,25 @@ public class AdminGUI extends JFrame {
 		teacherTextBox.add(teacherSelected,BorderLayout.SOUTH);
 		teacherPanel.add(teacherTextBox, BorderLayout.CENTER);
 		teacherPanel.add(allocateLabButton, BorderLayout.SOUTH);
-		
-		classPanel.add(subjectInst, BorderLayout.NORTH);
-		classPanel.add(scroll);
-
-
 		mainPanel.add(classPanel);
 		mainPanel.add(teacherPanel);
 		buttonPanel.add(directoryPanel);
 		buttonPanel.add(quit);
-		
-
+	
+		//Finally, adding the Panels to the main JFrame
 		this.add(mainPanel, BorderLayout.CENTER);
 		this.add(northPanel, BorderLayout.NORTH);
+		//The below two lines add blank JLabels in order to add a border, preventing the JTextAreas from extending all the way to the sides of the interface.
 		this.add(new JLabel("                     "), BorderLayout.WEST);
 		this.add(new JLabel("                     "), BorderLayout.EAST);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		
+		//The below calls the populateText method to ensure file contents are added to the GUI upon startup.
 		handler.populateText();
 	}
 	
 	public JButton getQuit() {
 		return quit;
-	}
-	public JButton getSubmit() {
-		return submit;
 	}
 	public JButton getAllocateLabButton() {
 		return allocateLabButton;

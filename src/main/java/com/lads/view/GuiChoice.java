@@ -13,6 +13,7 @@ public class GuiChoice extends JFrame {
 	private JTextField fileDirectory;
 
 	public GuiChoice() {
+		
 		this.setSize(500, 120);
 		this.setTitle("User Selection");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
