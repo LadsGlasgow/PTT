@@ -16,7 +16,7 @@ public class ActionEventAdmin implements ActionListener{
 		this.frame = frame;
 	}
 
-	//refresh the search result
+	//Refreshes the JTextArea containing teacher information after a search.
 	public void refreshSearchResult(Aggregate<Teacher> loT){
 		String s = "";
 
@@ -29,9 +29,8 @@ public class ActionEventAdmin implements ActionListener{
 		}
 		frame.getTeacherText().setText(s);
 	}
-
+	//Adds the information contained on file to the SingletonLoT and SingletonLoL lists, and then displays this on the JTextAreas.
 	public void populateText() {
-		//Aggregate<Lab> labAggregate = FileIO.getInstance().fetchData("lab"); //***Create an aggregate of all of the different labs in the labs.txt file
 		Aggregate<Lab> labAggregate = SingletonLoL.getInstance(); //Create an aggregate of all of the different labs in the labs.txt file
 
 		String s = "";
@@ -54,14 +53,14 @@ public class ActionEventAdmin implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource() == frame.getQuit()) {
-			//save labs, module,teachers before leave.
+			//Saves the labs, module, and teachers before exiting the program upon clicking "Quit".
 			FileIO.getInstance().storeData("module",SingletonLoM.getInstance());
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
 			System.exit(0);
 		}
 		
-		//import from file.
+		//Adds training completed by a teacher.
 		if (e.getSource() == frame.getAddTraining()){
 			
 			String line = frame.getTrainingAllocation().getText();
@@ -85,7 +84,7 @@ public class ActionEventAdmin implements ActionListener{
 			}
 		}
 		
-		//submit lab allocation - Adding a teacher to a lab
+		//Submit lab allocation - Adding a teacher to a lab
 		if (e.getSource() == frame.getAllocateLabButton()){
 			//e.g. "Simon|DTALab101"
 			if (!frame.getTeacherSelected().getText().equals("")){
@@ -113,13 +112,13 @@ public class ActionEventAdmin implements ActionListener{
 				}
 			}
 
-			//save labs, module,teachers before leave.
+			//Saves the labs, module, and teachers before exiting the program upon clicking "Quit".
 			FileIO.getInstance().storeData("module",SingletonLoM.getInstance());
 			FileIO.getInstance().storeData("lab", SingletonLoL.getInstance());
 			FileIO.getInstance().storeData("teacher", SingletonLoT.getInstance());
 		}
 		
-		//search for skills
+		//Code for searching through the teachers are returning teachers with a specific skill using the search bar.
 		if (e.getSource() == frame.getSearchButton()){
 			String skillFilter = frame.getSearch().getText();
 
@@ -130,7 +129,7 @@ public class ActionEventAdmin implements ActionListener{
 			else {
 				Aggregate<Teacher> filterLoT = new Aggregate<Teacher>();
 
-				//find the filtered teachers
+				//Find the filtered teachers
 				for (Iterator<Teacher> iterator = SingletonLoT.getInstance().getIterator();iterator.hasNext();){
 					Teacher teacher = iterator.next();
 					if (teacher.hasSkill(skillFilter)){

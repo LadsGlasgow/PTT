@@ -24,11 +24,11 @@ public class ActionEventDirector implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		//Exits whenever "Quit" is clicked
 		if(e.getSource() == frame.getQuit()) {
-
-
 			System.exit(0);
 		}
+		
 		if(e.getSource() == frame.getClear()) {
 			frame.getEnterText().setText("");
 		}

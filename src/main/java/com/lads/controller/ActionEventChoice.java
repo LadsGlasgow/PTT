@@ -23,7 +23,7 @@ public class ActionEventChoice implements ActionListener {
 			System.exit(0); //Exit System on Quit
 		}
 		
-		if(e.getSource() == frame.getAdmin()) { //set the file directory before leave
+		if(e.getSource() == frame.getAdmin()) { //Set the file directory before quitting
 			FileIO.getInstance().setDirectory(frame.getFileDirectory().getText().trim());
 			AdminGUI GUI = new AdminGUI();
 			GUI.setVisible(true); //Load the AdminGUI if Administrator button is clicked
