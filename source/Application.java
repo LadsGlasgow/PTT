@@ -1,5 +1,3 @@
-package com.lads;
-
 import com.lads.view.GuiChoice;
 
 public class Application {

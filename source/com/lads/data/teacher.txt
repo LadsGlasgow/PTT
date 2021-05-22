@@ -1,0 +1,2 @@
+Simon|2020|5|14|[python_training]|[sql_training]|[python]
+Max|2020|5|14|[java_training]|[php_training]|[java]

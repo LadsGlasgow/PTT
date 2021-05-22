@@ -1,0 +1,3 @@
+python101|2|[python_training]|[]
+java202|2|[java_training]|[]
+java808|1|[java_training]|[Max]
