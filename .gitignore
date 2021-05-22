@@ -1,5 +1,3 @@
-# Compiled class file
-*.class
 
 # Log file
 *.log
@@ -27,7 +25,6 @@ pom.xml
 /test
 .idea
 *.iml
-out
 gen
 /.apt_generated/
 /.classpath
